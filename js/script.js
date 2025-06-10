@@ -70,7 +70,7 @@ function initializeContactForm() {
 
             // ★★★ ここをあなたのGoogleフォームのベースURLに置き換えてください ★★★
             // 例: 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA'
-            const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA';
+            const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSftBWnVToY7CVzjgsRtAjd2XBBLZPZ2WbSSRMW7X5zMn_3Rtg/formResponse';
 
             // FormDataオブジェクトを作成し、各データを追加
             const formData = new FormData();
