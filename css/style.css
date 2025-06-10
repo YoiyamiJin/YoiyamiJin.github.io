@@ -977,40 +977,78 @@ footer .container {
     .privacy-policy-section .privacy-sub-sub-title {
         font-size: 1.1em;
     }
+    
+   /* お問い合わせフォーム送信メッセージのスタイル */
+.form-message {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-align: center;
+    display: none; /* 初期状態では非表示 */
+    opacity: 0; /* フェードイン用 */
+    transition: opacity 0.5s ease-in-out, background-color 0.3s ease;
 }
 
-@media (max-width: 480px) {
-    .container {
-        padding: 0 15px;
-    }
+.form-message.success-message {
+    background-color: #e6ffe6; /* 淡い緑 */
+    color: #3d9970; /* 濃い緑 */
+    border: 1px solid #7ed321;
+    opacity: 1; /* 表示時にフェードイン */
+}
 
-    .hero-content h1 {
-        font-size: 2em;
-    }
+.form-message.error-message {
+    background-color: #ffe6e6; /* 淡い赤 */
+    color: #cc3333; /* 濃い赤 */
+    border: 1px solid #e74c3c;
+    opacity: 1; /* 表示時にフェードイン */
+}
 
-    .hero-content .tagline {
-        font-size: 0.9em;
-    }
+/* contact-section 内のフォームグループの追加スタイル (もし必要なら) */
+/* 例えば、必須マークのスタイルを調整する場合など */
+.contact-form .form-group label .required {
+    color: #e74c3c; /* 赤色 */
+    margin-left: 5px;
+    font-size: 0.9em;
+}
 
-    .hero-sub h1 {
-        font-size: 1.8em;
-    }
+.contact-form .privacy-agreement label .required {
+    color: #e74c3c; /* 赤色 */
+    margin-left: 5px;
+    font-size: 0.9em;
+}
 
-    .btn {
-        width: 90%;
-    }
+/* 送信ボタンの基本的なスタイル (もしstyle.cssにまだない場合や調整したい場合) */
+.contact-form .submit-btn {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 30px auto 0;
+    padding: 15px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
 
-    .section-title {
-        font-size: 1.8em;
-    }
+.contact-form .submit-btn:hover {
+    background-color: #555;
+}
 
-    .section-description {
-        font-size: 0.9em;
-    }
+.contact-form .submit-btn:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
 
-    .contact-section .submit-btn {
-        width: 100%;
-        font-size: 1em;
-        padding: 12px;
-    }
+/* content-box のシャドウと角丸の再確認 (必要であれば) */
+.content-box {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-top: 40px;
+}
 }
