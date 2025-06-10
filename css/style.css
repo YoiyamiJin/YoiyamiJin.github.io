@@ -1,0 +1,360 @@
+/* 基本設定 */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F8F8F8; /* 薄いグレーを背景に */
+    color: #333;
+    line-height: 1.6;
+}
+
+/* パステルグリーンの定義 (CSS変数) */
+:root {
+    --pastel-green-light: #C8E6C9; /* 淡いライムグリーン */
+    --pastel-green-dark: #A9D4AA;  /* 少し濃いめのライムグリーン */
+    --accent-color: #B2EBF2;       /* ミントグリーンに近い水色 */
+    --text-color: #333;
+    --border-color: #DDD;
+}
+
+/* ヘッダーとナビゲーション */
+header {
+    background-color: var(--pastel-green-light);
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap; /* レスポンシブ対応 */
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: var(--text-color);
+    font-weight: bold;
+    padding: 5px 10px;
+    position: relative; /* アンダーラインの基準 */
+    transition: color 0.3s ease; /* テキスト色の変化 */
+}
+
+/* ナビゲーションのアンダーラインアニメーション */
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0; /* 最初は幅0 */
+    height: 2px; /* 線の太さ */
+    background-color: var(--accent-color); /* 線の色 */
+    transition: width 0.3s ease-out; /* 幅が変化するアニメーション */
+}
+
+nav ul li a:hover {
+    color: var(--accent-color); /* ホバー時にテキストの色も変える */
+}
+
+nav ul li a:hover::after {
+    width: 100%; /* ホバー時に幅100%に */
+}
+
+/* メインコンテンツ */
+main {
+    padding: 20px;
+    max-width: 1000px;
+    margin: 20px auto;
+    /* スクロール時の背景色変化のためにグラデーションとfixedを設定 */
+    background: linear-gradient(to bottom, var(--pastel-green-light) 0%, #FFF 100%);
+    background-attachment: fixed; /* スクロールしても背景が固定される */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+section {
+    margin-bottom: 40px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+section:last-child {
+    border-bottom: none;
+}
+
+h1, h2, h3 {
+    color: var(--pastel-green-dark);
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+p {
+    text-align: justify;
+    margin-bottom: 15px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+}
+
+/* フッター */
+footer {
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+    background-color: var(--pastel-green-light);
+    color: var(--text-color);
+    font-size: 0.9em;
+}
+
+/* ローディングアニメーション */
+#loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--pastel-green-light); /* ローディング画面の背景色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease-out;
+}
+
+.loader {
+    border: 8px solid #f3f3f3; /* Light grey */
+    border-top: 8px solid var(--accent-color); /* Blue */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1.5s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* フェードインアニメーション */
+.fade-in { /* ページ読み込み時のフェードイン（例: トップページのメインビジュアル） */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-section { /* スクロール時のフェードイン（例: 自己紹介、ファンレター、事務所情報） */
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in-section.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fade-in-form { /* フォーム全体のフェードイン */
+    opacity: 0;
+    transition: opacity 1s ease-out;
+}
+
+.fade-in-form.active {
+    opacity: 1;
+}
+
+/* ホバーエフェクト (カードやボタンなど) */
+.hover-effect {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-effect:hover {
+    transform: translateY(-5px); /* 少し上に浮き上がる */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* 影が濃くなる */
+}
+
+/* お問い合わせフォームのスタイル */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: #FFF;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 1em;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* フォーム入力欄にフォーカスした際のアニメーション */
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+    border-color: var(--pastel-green-dark);
+    box-shadow: 0 0 8px rgba(169, 212, 170, 0.7); /* 影を少し強めて光るように */
+    outline: none;
+}
+
+button[type="submit"] {
+    background-color: var(--pastel-green-dark);
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s ease, transform 0.1s ease-out, box-shadow 0.1s ease-out; /* クリック時のアニメーション追加 */
+}
+
+button[type="submit"]:hover {
+    background-color: var(--accent-color);
+}
+
+/* ボタンのクリック時の微細なアニメーション */
+button[type="submit"]:active {
+    transform: translateY(2px); /* 少し下に移動 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* 影を小さくして、押し込まれたように見せる */
+}
+
+/* 所属事務所カードのスタイル */
+.agency-link-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.agency-card {
+    background-color: var(--pastel-green-light);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 300px;
+    width: 100%;
+}
+
+.agency-card img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 15px;
+    border-radius: 0; /* ロゴなので角丸は不要な場合も */
+}
+
+.agency-card h3 {
+    margin-top: 0;
+    font-size: 1.5em;
+    color: #FFF; /* カード内の見出しを白に */
+}
+
+.agency-card p {
+    font-size: 0.9em;
+    color: #333;
+}
+
+.agency-card a {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.agency-card a:hover {
+    background-color: var(--pastel-green-dark);
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav ul li {
+        margin: 5px 0;
+    }
+
+    main {
+        padding: 15px;
+        margin: 15px auto;
+    }
+
+    section {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 1.8em;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .form-group {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul li a {
+        padding: 8px 12px;
+        font-size: 0.9em;
+    }
+
+    h1 {
+        font-size: 1.5em;
+    }
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    button[type="submit"] {
+        padding: 10px 15px;
+        font-size: 1em;
+    }
+}
