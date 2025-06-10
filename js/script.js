@@ -1,80 +1,120 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // ページ全体が読み込まれた後に実行される処理
-
-    // ローディングアニメーションの制御
-    const loadingScreen = document.getElementById('loading'); // ローディング画面の要素を取得
-    if (loadingScreen) {
-        // DOMContentLoadedイベントでローディング画面をフェードアウトさせ、非表示にする
-        loadingScreen.style.opacity = '0'; // 透明度を0にしてフェードアウト開始
-        setTimeout(() => {
-            loadingScreen.style.display = 'none'; // フェードアウト後に非表示にする
-        }, 500); // CSSのtransition時間（0.5s）と合わせる
-    }
-
-    // ページ読み込み時のフェードインアニメーション (例: トップページのメインビジュアル)
-    const fadeInElements = document.querySelectorAll('.fade-in'); // 'fade-in'クラスを持つ要素をすべて取得
-    fadeInElements.forEach(element => {
-        element.classList.add('active'); // 'active'クラスを追加してアニメーションをトリガー
+/**
+ * スクロール時のアニメーション処理
+ */
+$(window).on('scroll', function() {
+    $('.fade-in-up').each(function() {
+        var elemPos = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll > elemPos - windowHeight + 100) {
+            $(this).addClass('appear');
+        }
     });
-
-    // スクロール時のフェードインアニメーション (例: 自己紹介セクション、フォーム)
-    const fadeInSections = document.querySelectorAll('.fade-in-section'); // 'fade-in-section'クラスを持つ要素を取得
-    const fadeInForms = document.querySelectorAll('.fade-in-form');       // 'fade-in-form'クラスを持つ要素を取得
-
-    // Intersection Observer の設定
-    const observerOptions = {
-        root: null, // ビューポートをルート要素とする
-        rootMargin: '0px', // ルート要素のマージン
-        threshold: 0.1 // 要素の10%が見えたらコールバックを実行
-    };
-
-    const sectionObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                // 要素がビューポートに入ったら
-                entry.target.classList.add('active'); // 'active'クラスを追加してアニメーションをトリガー
-                observer.unobserve(entry.target); // 一度表示されたら監視を終了 (何度もアニメーションしないように)
-            }
-        });
-    }, observerOptions);
-
-    // 各セクションとフォームにIntersection Observerを適用
-    fadeInSections.forEach(section => {
-        sectionObserver.observe(section);
-    });
-
-    fadeInForms.forEach(form => {
-        sectionObserver.observe(form);
-    });
-
-    // お問い合わせフォームの送信処理 (簡易的な例)
-    // 実際にはサーバーサイドの処理が必要です
-    const contactForm = document.querySelector('#contact-form form');
-    if (contactForm) { // フォームが存在する場合のみ処理を実行
-        contactForm.addEventListener('submit', (event) => {
-            event.preventDefault(); // デフォルトのフォーム送信（ページの再読み込み）を防ぐ
-
-            // ここにフォームデータをサーバーに送信する実際の処理を追加します
-            // 例: fetch API を使用して非同期でデータを送信
-            /*
-            fetch('/submit-contact', {
-                method: 'POST',
-                body: new FormData(contactForm)
-            })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                alert('お問い合わせありがとうございます！');
-                contactForm.reset(); // フォームをリセット
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('送信中にエラーが発生しました。もう一度お試しください。');
-            });
-            */
-
-            alert('お問い合わせありがとうございます！'); // 仮の成功メッセージ
-            contactForm.reset(); // フォームをリセット
-        });
-    }
 });
+
+// ページロード時にもアニメーションを適用
+$(window).on('load', function() {
+    $('.fade-in-up').each(function() {
+        var elemPos = $(this).offset().top;
+        var scroll = $(window).scrollTop();
+        var windowHeight = $(window).height();
+        if (scroll > elemPos - windowHeight + 100) {
+            $(this).addClass('appear');
+        }
+    });
+});
+
+/**
+ * お問い合わせフォームの送信処理を管理する関数
+ * (Googleフォームへ直接データを送信)
+ */
+function initializeContactForm() {
+    const contactForm = document.getElementById('contactForm');
+    const formMessage = document.getElementById('form-message');
+    const submitButton = contactForm ? contactForm.querySelector('.submit-btn') : null;
+
+    if (contactForm && formMessage) { // フォーム要素とメッセージ表示要素が存在する場合のみ処理を実行
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルト送信動作をキャンセル
+
+            // 送信ボタンを無効化し、ユーザーに処理中であることを示す
+            if (submitButton) {
+                submitButton.disabled = true;
+                submitButton.textContent = '送信中...';
+            }
+
+            // メッセージ表示をリセット
+            formMessage.style.display = 'none';
+            formMessage.classList.remove('success-message', 'error-message');
+            formMessage.textContent = ''; // メッセージ内容もクリア
+
+            // 各入力フィールドから値を取得
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            const privacyConsentCheckbox = document.getElementById('privacyConsent');
+            const privacyConsent = privacyConsentCheckbox.checked ? '同意済み' : '未同意';
+
+            // バリデーション (必須項目が空でないか、プライバシーポリシーに同意しているか確認)
+            if (!name || !email || !message || !privacyConsentCheckbox.checked) {
+                formMessage.style.display = 'block';
+                formMessage.textContent = '必須項目がすべて入力されているか、プライバシーポリシーに同意しているかご確認ください。';
+                formMessage.classList.add('error-message');
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '送信する';
+                }
+                return; // ここで処理を中断
+            }
+
+            // ★★★ ここをあなたのGoogleフォームのベースURLに置き換えてください ★★★
+            // 例: 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA'
+            const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSfSqyvC_PWfJUPIWDGp8nNMB9lRnrYwvI4AxfIMTt_kxo2EwA';
+
+            // FormDataオブジェクトを作成し、各データを追加
+            const formData = new FormData();
+            // ★★★ ここをあなたのGoogleフォームのエントリーIDに置き換えてください ★★★
+            // エントリーIDは文字列なので、引用符で囲む必要があります。
+            formData.append('entry.702435569', name);          // お名前のエントリーIDと値
+            formData.append('entry.1645834279', email);         // メールアドレスのエントリーIDと値
+            formData.append('entry.565703469', subject);        // 件名のエントリーIDと値
+            formData.append('entry.939436923', message);        // お問い合わせ内容のエントリーIDと値
+            formData.append('entry.140261202', privacyConsent); // プライバシー同意のエントリーIDと値
+
+            // Fetch APIを使ってGoogleフォームにデータを送信
+            fetch(googleFormBaseUrl + '/formResponse', {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors' // クロスオリジン制約を回避するため
+            })
+            .then(() => {
+                // `no-cors`モードではレスポンス内容を読み取れないため、
+                // 送信成功したと仮定して常に成功メッセージを表示します。
+                // 実際の送信失敗はconsole.errorでしか捕捉できません。
+                formMessage.style.display = 'block';
+                formMessage.textContent = 'お問い合わせありがとうございます。';
+                formMessage.classList.add('success-message'); // 成功メッセージ用のクラスを追加
+                contactForm.reset(); // フォームをクリア
+            })
+            .catch((error) => {
+                formMessage.style.display = 'block';
+                formMessage.textContent = '送信に失敗しました。時間をおいて再度お試しください。';
+                formMessage.classList.add('error-message');
+                console.error('フォーム送信エラー:', error);
+            })
+            .finally(() => {
+                // 送信ボタンを再度有効化
+                if (submitButton) {
+                    submitButton.disabled = false;
+                    submitButton.textContent = '送信する';
+                }
+            });
+        });
+    } else {
+        // console.warn('ID "contactForm" または "form-message" を持つ要素が見つかりませんでした。お問い合わせフォームのリスナーは設定されません。');
+    }
+}
+
+// DOMContentLoaded イベントでフォーム初期化関数を呼び出す
+document.addEventListener('DOMContentLoaded', initializeContactForm);
