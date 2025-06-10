@@ -3,15 +3,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ローディングアニメーションの制御
     const loadingScreen = document.getElementById('loading'); // ローディング画面の要素を取得
-    window.addEventListener('load', () => {
-        // window.onload は画像などの全てのリソースが読み込まれた後に発火
-        if (loadingScreen) {
-            loadingScreen.style.opacity = '0'; // 透明度を0にしてフェードアウト開始
-            setTimeout(() => {
-                loadingScreen.style.display = 'none'; // フェードアウト後に非表示にする
-            }, 500); // CSSのtransition時間（0.5s）と合わせる
-        }
-    });
+    if (loadingScreen) {
+        // DOMContentLoadedイベントでローディング画面をフェードアウトさせ、非表示にする
+        loadingScreen.style.opacity = '0'; // 透明度を0にしてフェードアウト開始
+        setTimeout(() => {
+            loadingScreen.style.display = 'none'; // フェードアウト後に非表示にする
+        }, 500); // CSSのtransition時間（0.5s）と合わせる
+    }
 
     // ページ読み込み時のフェードインアニメーション (例: トップページのメインビジュアル)
     const fadeInElements = document.querySelectorAll('.fade-in'); // 'fade-in'クラスを持つ要素をすべて取得
@@ -49,17 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         sectionObserver.observe(form);
     });
 
-    // ナビゲーションのホバーエフェクト（CSSで実装済みですが、JSで追加のインタラクションが必要な場合のために残しています）
-    // const navLinks = document.querySelectorAll('nav ul li a');
-    // navLinks.forEach(link => {
-    //     link.addEventListener('mouseover', () => {
-    //         // 例: マウスオーバーで何かJSでの処理を追加する場合
-    //     });
-    //     link.addEventListener('mouseout', () => {
-    //         // 例: マウスアウトで何かJSでの処理を追加する場合
-    //     });
-    // });
-
     // お問い合わせフォームの送信処理 (簡易的な例)
     // 実際にはサーバーサイドの処理が必要です
     const contactForm = document.querySelector('#contact-form form');
@@ -67,22 +54,24 @@ document.addEventListener('DOMContentLoaded', () => {
         contactForm.addEventListener('submit', (event) => {
             event.preventDefault(); // デフォルトのフォーム送信（ページの再読み込み）を防ぐ
 
-            // ここにフォームデータをサーバーに送信する処理を追加します
+            // ここにフォームデータをサーバーに送信する実際の処理を追加します
             // 例: fetch API を使用して非同期でデータを送信
-            // fetch('/submit-contact', {
-            //     method: 'POST',
-            //     body: new FormData(contactForm)
-            // })
-            // .then(response => response.json())
-            // .then(data => {
-            //     console.log(data);
-            //     alert('お問い合わせありがとうございます！');
-            //     contactForm.reset(); // フォームをリセット
-            // })
-            // .catch(error => {
-            //     console.error('Error:', error);
-            //     alert('送信中にエラーが発生しました。もう一度お試しください。');
-            // });
+            /*
+            fetch('/submit-contact', {
+                method: 'POST',
+                body: new FormData(contactForm)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                alert('お問い合わせありがとうございます！');
+                contactForm.reset(); // フォームをリセット
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('送信中にエラーが発生しました。もう一度お試しください。');
+            });
+            */
 
             alert('お問い合わせありがとうございます！'); // 仮の成功メッセージ
             contactForm.reset(); // フォームをリセット
