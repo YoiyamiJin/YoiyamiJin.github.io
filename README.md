@@ -1,1 +1,0 @@
-# YoiyamiJin.github.io
