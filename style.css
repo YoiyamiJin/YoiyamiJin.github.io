@@ -1,0 +1,519 @@
+/* style.css */
+
+/* 基本設定 */
+body {
+    /* グラデーションをよりパステル調に */
+    background: linear-gradient(to right, #ADD8E6, #87CEEB); /* 淡い青から水色へ */
+    color: #333333; /* 文字色を濃いグレーに変更し、視認性を高める */
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* 横スクロールバーを防ぐ */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+section {
+    padding: 80px 0;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    position: relative;
+    display: inline-block; /* 下線の幅を文字に合わせる */
+    color: #2c3e50; /* 見出し色も調整 */
+}
+
+h2::after {
+    content: '';
+    display: block;
+    width: 60%;
+    height: 4px;
+    /* 見出し下線のグラデーションもパステル調に */
+    background: linear-gradient(to right, #87CEEB, #ADD8E6);
+    margin: 10px auto 0;
+    border-radius: 2px;
+}
+
+/* ヘッダー */
+header {
+    background: rgba(44, 62, 80, 0.9); /* 少し濃い目の半透明な青 */
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    margin: 0;
+    font-size: 1.8em;
+    font-weight: bold;
+}
+
+.logo a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.logo a:hover {
+    color: #B0E0E6; /* 淡い水色にホバー */
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 30px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 0;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #B0E0E6; /* ナビゲーション下線も淡い水色に */
+    transition: width 0.3s ease;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+nav ul li a:hover {
+    color: #B0E0E6;
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: white;
+    margin: 6px 0;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* ヒーローセクション */
+.hero-section {
+    /* ヒーローセクションのグラデーションをパステル調に */
+    background: linear-gradient(45deg, #A7D9F8, #C4E8FD); /* さらに明るく優しい青へ */
+    color: #333333; /* 文字色を濃いグレーに変更 */
+    padding: 120px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 500px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2); /* 影も薄く */
+}
+
+.hero-section h2 {
+    font-size: 3.5em;
+    margin-bottom: 20px;
+    animation: fadeInDown 1s ease-out forwards;
+    color: #2c3e50; /* 見出し色 */
+}
+
+.hero-section p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    animation: fadeInUp 1s ease-out forwards 0.3s;
+    opacity: 0;
+}
+
+/* ボタン */
+.button {
+    /* ボタンのグラデーションもパステル調に */
+    background: linear-gradient(to right, #6495ED, #87CEFA); /* コーンフラワーブルーからライトスカイブルーへ */
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 影も薄く */
+    animation: scaleIn 0.8s ease-out forwards 0.6s;
+    opacity: 0;
+}
+
+.button:hover {
+    /* ホバー時のグラデーションを少し濃く */
+    background: linear-gradient(to right, #4169E1, #6A5ACD); /* ロイヤルブルーからスレートブルーへ */
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* カードデザインの基本 */
+.schedule-grid, .video-grid, .sns-links {
+    display: grid;
+    gap: 30px;
+    margin-top: 50px;
+    justify-content: center;
+}
+
+.schedule-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.video-grid {
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+}
+
+.sns-links {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.schedule-card, .video-card, .profile-card, .sns-icon-wrapper {
+    background: rgba(255, 255, 255, 0.7); /* 白っぽい半透明の背景 */
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2); /* 影も薄く */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    color: #333333; /* 文字色を濃いグレーに */
+    position: relative;
+    overflow: hidden;
+}
+
+.schedule-card:hover, .video-card:hover, .profile-card:hover, .sns-icon-wrapper:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.3);
+}
+
+.schedule-card h3 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #4682B4; /* スチールブルー */
+}
+
+.schedule-card p {
+    font-size: 1.1em;
+}
+
+.video-card iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.video-card h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #4682B4;
+}
+
+.profile-card {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    padding: 40px;
+}
+
+.profile-card h3 {
+    font-size: 1.8em;
+    margin-top: 30px;
+    margin-bottom: 15px;
+    color: #4682B4;
+}
+
+.profile-card ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+.profile-card ul li {
+    margin-bottom: 10px;
+}
+
+.profile-card p {
+    font-size: 1.1em;
+}
+
+.sns-icon-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    color: #333333; /* 文字色を濃いグレーに */
+    font-weight: bold;
+    padding: 20px;
+}
+
+.sns-icon-wrapper span {
+    margin-top: 10px;
+    font-size: 1.1em;
+}
+
+/* アイコンプレースホルダー */
+.icon-placeholder {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background-color: transparent;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-placeholder img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    border-radius: inherit;
+}
+
+.profile-img {
+    width: 150px;
+    height: 150px;
+    margin-bottom: 30px;
+}
+
+/* フッター */
+footer {
+    /* フッターのグラデーションもパステル調に */
+    background: linear-gradient(to top, #6A5ACD, #4682B4); /* スレートブルーからスチールブルーへ */
+    padding: 30px 0;
+    text-align: center;
+    font-size: 0.9em;
+    color: #E0FFFF; /* 淡いシアン */
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* --- ローディング画面 --- */
+#loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* ローディング画面のグラデーションもパステル調に */
+    background: linear-gradient(45deg, #B0E0E6, #ADD8E6); /* パウダーブルーから淡い青へ */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    color: #2c3e50; /* 文字色を濃い青系に */
+    font-size: 1.5em;
+    font-weight: bold;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* ローディングスピナー */
+.loading-spinner {
+    border: 8px solid rgba(0, 0, 0, 0.1); /* 薄い線に */
+    border-top: 8px solid #4682B4; /* スチールブルー */
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    animation: spin 1.5s linear infinite;
+    margin-bottom: 20px;
+}
+
+/* --- レスポンシブデザイン --- */
+@media (max-width: 768px) {
+    h2 {
+        font-size: 2em;
+    }
+
+    .hero-section h2 {
+        font-size: 2.5em;
+    }
+
+    .hero-section p {
+        font-size: 1.2em;
+    }
+
+    /* ハンバーガーメニュー表示 */
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        background: rgba(44, 62, 80, 0.95); /* 半透明の背景 */
+        position: absolute;
+        top: 80px;
+        left: 0;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        border-radius: 0 0 10px 10px;
+        transform: translateY(-100%);
+        transition: transform 0.4s ease-out;
+    }
+
+    nav ul.active {
+        display: flex;
+        transform: translateY(0);
+    }
+
+    nav ul li {
+        margin: 15px 0;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .schedule-grid, .video-grid, .sns-links {
+        grid-template-columns: 1fr;
+    }
+
+    .profile-card {
+        padding: 30px 20px;
+    }
+}
+
+/* --- アニメーションキーフレーム --- */
+
+/* フェードイン */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* 上からフェードイン */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 下からフェードイン */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 拡大して表示 */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* スライドアップ (スクロール時に発動) */
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* スピナー回転 */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* アニメーションの適用 */
+.hero-section {
+    opacity: 0;
+}
+.hero-section.fade-in {
+    animation: fadeIn 1s ease-out forwards;
+}
+
+/* スクロール時のアニメーション */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
