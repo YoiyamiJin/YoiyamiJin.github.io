@@ -146,4 +146,66 @@ document.addEventListener('DOMContentLoaded', function() {
     //         // ここに実際の検索処理を実装
     //     });
     // }
+
+    // ========================================
+    // 6. Q&Aセクションのアコーディオン機能
+    // ========================================
+    const qaItems = document.querySelectorAll('.qa-item');
+
+    qaItems.forEach(item => {
+        const question = item.querySelector('.question');
+        question.addEventListener('click', () => {
+            // 現在開いている他のQ&Aを閉じる (オプション)
+            qaItems.forEach(otherItem => {
+                if (otherItem !== item && otherItem.classList.contains('active')) {
+                    otherItem.classList.remove('active');
+                }
+            });
+
+            // クリックされたQ&Aを開閉
+            item.classList.toggle('active');
+        });
+    });
+
+    // ========================================
+    // 7. お問い合わせフォームのダミー送信処理
+    //    ※これはフロントエンドのみで動作するダミーです。
+    //    実際にメールを送信するには、サーバーサイドの処理が必要です。
+    // ========================================
+    const contactForm = document.getElementById('contact-form');
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // フォームのデフォルト送信をキャンセル
+
+            // フォームの入力値を取得
+            const inquiryType = document.getElementById('inquiry-type').value;
+            const fullName = document.getElementById('full-name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+
+            // 簡単な入力チェック (HTMLのrequired属性でも行われるが、念のため)
+            if (!inquiryType || !fullName || !email || !subject || !message) {
+                alert('すべての必須項目を入力してください。');
+                return;
+            }
+
+            // ここに実際のメール送信やデータベース保存などのサーバーサイド処理を実装します。
+            // 現時点ではコンソールに出力するのみです。
+            console.log('--- お問い合わせ内容 ---');
+            console.log('お問い合わせ種別:', inquiryType);
+            console.log('お名前:', fullName);
+            console.log('メールアドレス:', email);
+            console.log('件名:', subject);
+            console.log('内容:', message);
+            console.log('--------------------');
+
+            // ユーザーへのフィードバック
+            alert('お問い合わせありがとうございます。内容を確認し、後ほどご連絡させていただきます。');
+
+            // フォームをリセット
+            contactForm.reset();
+        });
+    }
 });
