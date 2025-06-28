@@ -452,17 +452,16 @@ nav {
 }
 
 .detail-item {
-    background-color: #fff;
+    background-color: #fff; /* 色は変えない */
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* background-colorを追加 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .detail-item:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-    background-color: rgba(167, 217, 160, 0.1); /* primary-colorの薄い透明色 */
+    transform: translateY(-10px); /* わずかに浮き上がる */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 影をより濃く、広げる */
 }
 
 .detail-item i {
