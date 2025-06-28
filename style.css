@@ -456,11 +456,12 @@ nav {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    /* transform と box-shadow に加えて、scale もスムーズに変化するように transition を追加 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .detail-item:hover {
-    transform: translateY(-10px); /* わずかに浮き上がる */
+    transform: translateY(-10px) scale(1.03); /* わずかに浮き上がり、かつ3%拡大 */
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 影をより濃く、広げる */
 }
 
@@ -488,7 +489,6 @@ nav {
     margin: 0 auto 10px;
     border: 2px solid var(--accent-color); /* 枠線 */
 }
-
 /* ファンへメッセージと活動紹介 */
 .message-to-fans, .activity-intro {
     background-color: #fff;
