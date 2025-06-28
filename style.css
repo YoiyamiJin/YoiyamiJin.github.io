@@ -95,6 +95,11 @@ nav {
     font-size: 1.8rem;
     font-weight: 700;
     color: var(--primary-color); /* ブランドカラー */
+    transition: transform 0.3s ease; /* ホバーエフェクト用 */
+}
+
+.logo:hover {
+    transform: scale(1.05); /* わずかに拡大 */
 }
 
 .nav-menu {
@@ -111,6 +116,7 @@ nav {
     font-size: 1.1rem;
     position: relative;
     padding-bottom: 5px; /* 下線とのスペース */
+    transition: text-shadow 0.3s ease; /* text-shadowのみにトランジション */
 }
 
 .nav-menu a::after {
@@ -129,6 +135,10 @@ nav {
 .nav-menu a:hover::after,
 .nav-menu a.active::after { /* アクティブなページにも下線 */
     width: 100%;
+}
+
+.nav-menu a:hover {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.7); /* わずかに光るような影 */
 }
 
 /* ハンバーガーメニューアイコン (モバイル用) */
@@ -348,7 +358,7 @@ nav {
     display: flex;
     justify-content: center;
     gap: 25px; /* アイコン間のスペース */
-    /* 画像の白い部分をなくす調整 */
+    /* 画像の白い部分をなくす調整のため、home-contentの直後に配置される想定 */
     background-color: rgba(255, 255, 255, 0.9); /* ホームコンテンツと同じ背景色 */
     padding: 20px; /* 少しパディングを追加 */
     border-bottom-left-radius: 10px; /* 角丸を継承 */
@@ -357,9 +367,7 @@ nav {
     max-width: 900px;
     width: 90%;
     margin: 0 auto; /* 中央寄せ */
-    /* 画像の白い部分の調整のため、home-contentの直後に配置される想定 */
 }
-
 
 .social-links a {
     font-size: 3rem; /* アイコンサイズ */
@@ -412,7 +420,6 @@ nav {
     color: var(--text-color);
 }
 
-
 /* プロフィールメインビジュアル */
 .profile-main-visual {
     text-align: center;
@@ -449,12 +456,13 @@ nav {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* background-colorを追加 */
 }
 
 .detail-item:hover {
     transform: translateY(-10px);
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    background-color: rgba(167, 217, 160, 0.1); /* primary-colorの薄い透明色 */
 }
 
 .detail-item i {
