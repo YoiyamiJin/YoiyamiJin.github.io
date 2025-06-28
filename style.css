@@ -135,18 +135,46 @@ nav {
     justify-content: center;
     text-align: center;
     padding-top: 80px; /* ヘッダーの高さ分 */
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), var(--primary-color) 80%); /* パステル黄緑のグラデーション */
+    background-color: var(--primary-color); /* 背景は幾何学模様で上書きされますが、念のため */
     overflow: hidden;
 }
+
+/* 幾何学模様の背景 */
+.geometric-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image:
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 40%, rgba(255,255,255,0.1) 1px, transparent 1px);
+    background-size: 50px 50px, 80px 80px, 120px 120px; /* サイズの異なるドット */
+    animation: moveBackground 60s linear infinite; /* アニメーション */
+    z-index: 0; /* 最背面 */
+    opacity: 0.7; /* 少し透明度を設定 */
+}
+
+@keyframes moveBackground {
+    from {
+        background-position: 0 0, 0 0, 0 0;
+    }
+    to {
+        background-position: 500px 500px, 800px 800px, 1200px 1200px; /* 動く距離 */
+    }
+}
+
 
 .main-visual-container {
     position: relative;
     width: 100%;
     max-width: 800px; /* 立ち絵の最大幅 */
-    margin-bottom: 20px; /* コンセプトテキストとの距離を調整 */
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2; /* 幾何学模様の上に表示 */
 }
 
 .main-visual-standing {
@@ -182,21 +210,58 @@ nav {
     opacity: 1;
 }
 
-/* コンセプトテキスト */
-.concept-text {
-    margin-bottom: 40px; /* お知らせとの距離を調整 */
-    padding: 0 20px; /* 左右の余白 */
-    z-index: 5;
+/* ヒーローセクション内のコンテンツをまとめるラッパー */
+.hero-content-wrapper {
+    z-index: 5; /* 他の要素より手前に */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px; /* 立ち絵からの距離 */
 }
 
-.concept-text h1 {
+/* コンセプトを表示 */
+.concept-display {
     font-size: 2.8rem;
-    color: var(--accent-color);
+    font-weight: 700;
+    color: var(--accent-color); /* ダークトーン */
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
     animation: slideInFromTop 1s ease-out forwards;
-    animation-delay: 0.5s; /* 立ち絵表示後に少し遅れて表示 */
-    opacity: 0; /* 初期状態は非表示 */
+    animation-delay: 0.5s;
+    opacity: 0;
 }
+
+/* キャッチフレーズ */
+.tagline {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 40px; /* ボタンとの距離 */
+    animation: fadeIn 1.5s ease-out forwards;
+    animation-delay: 1s; /* 少し遅れて表示 */
+    opacity: 0;
+}
+
+/* 最新情報はこちらボタン */
+.button-latest-info {
+    display: inline-block;
+    background-color: var(--accent-color); /* ダークトーン */
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 50px; /* 丸みを帯びたボタン */
+    font-size: 1.2rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInButton 1.5s ease-out forwards;
+    animation-delay: 1.5s; /* 更に遅れて表示 */
+    opacity: 0;
+}
+
+.button-latest-info:hover {
+    background-color: #555; /* ホバーで少し暗く */
+    transform: translateY(-3px); /* わずかに浮き上がる */
+}
+
 
 .home-content {
     background-color: rgba(255, 255, 255, 0.9);
@@ -206,7 +271,7 @@ nav {
     max-width: 900px;
     width: 90%;
     z-index: 5;
-    margin-top: 0; /* ヒーローセクション内で調整するため */
+    margin-top: 60px; /* ヒーローコンテンツからの距離 */
 }
 
 .announcements {
@@ -291,6 +356,27 @@ footer {
     }
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeInButton {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
 /* レスポンシブデザイン */
 @media (max-width: 768px) {
     nav {
@@ -341,13 +427,22 @@ footer {
         width: 90%;
     }
 
-    .concept-text h1 {
+    .concept-display {
         font-size: 1.8rem;
+    }
+
+    .tagline {
+        font-size: 1.2rem;
+    }
+
+    .button-latest-info {
+        font-size: 1rem;
+        padding: 12px 25px;
     }
 
     .home-content {
         padding: 20px;
-        margin-top: 20px;
+        margin-top: 40px; /* モバイルでの調整 */
     }
 
     .announcements h2 {
