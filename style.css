@@ -3,15 +3,15 @@
    ======================================== */
 :root {
     --primary-color: #A7D9A0; /* パステルカラーの黄緑 */
-    --accent-color: #333;   /* 宵闇をイメージさせるダークトーン (タイトル、ボタンなど) */
-    --text-color: #333;     /* 一般的なテキストの色 */
-    --background-light: #f5f5f5; /* 明るい背景色 */
-    --background-dark: #222;    /* ヘッダー、フッターの背景色 */
+    --accent-color: #333;    /* 宵闇をイメージさせるダークトーン (タイトル、ボタン、アイコンなど) */
+    --text-color: #333;      /* 一般的なテキストの色 */
+    --background-light: #f5f5f5; /* 明るい背景色（コンテンツセクションなど） */
+    --background-dark: #222;     /* ヘッダー、フッターの背景色 */
 }
 
 /* ========================================
    2. グローバルスタイル (Global Styles)
-   ======================================= */
+   ======================================== */
 * {
     margin: 0;
     padding: 0;
@@ -22,22 +22,51 @@ body {
     font-family: 'Noto Sans JP', sans-serif; /* ご用意いただくフォントを指定 */
     line-height: 1.6;
     color: var(--text-color);
-    background-color: var(--background-light);
+    background-color: var(--background-light); /* 全体のデフォルト背景 */
     overflow-x: hidden; /* 横スクロール防止 */
 }
 
 a {
     text-decoration: none;
     color: var(--text-color);
-    transition: color 0.3s ease;
+    transition: color 0.3s ease; /* ホバー時の色変化 */
 }
 
 a:hover {
-    color: var(--primary-color); /* ホバー時の色変化 */
+    color: var(--primary-color);
 }
 
 ul {
     list-style: none;
+}
+
+/* 共通のコンテンツセクションラッパー */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px; /* 左右の余白 */
+}
+
+/* 共通のセクションタイトル */
+.section-title {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    text-align: center;
+    margin-bottom: 60px;
+    position: relative;
+    padding-bottom: 10px; /* 下線とのスペース */
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 80px; /* 下線の長さ */
+    height: 4px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
 }
 
 /* ========================================
@@ -57,7 +86,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* 最大幅 */
+    max-width: 1200px; /* ナビゲーションの最大幅 */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -81,6 +110,7 @@ nav {
     font-weight: 700;
     font-size: 1.1rem;
     position: relative;
+    padding-bottom: 5px; /* 下線とのスペース */
 }
 
 .nav-menu a::after {
@@ -89,16 +119,16 @@ nav {
     width: 0;
     height: 2px;
     display: block;
-    margin-top: 5px;
-    right: 0;
+    bottom: 0; /* 下線の位置 */
+    left: 50%; /* 中央から伸びる */
+    transform: translateX(-50%); /* 中央に配置 */
     background: var(--primary-color);
     transition: width 0.3s ease; /* ホバーで下線が伸びるアニメーション */
 }
 
-.nav-menu a:hover::after {
+.nav-menu a:hover::after,
+.nav-menu a.active::after { /* アクティブなページにも下線 */
     width: 100%;
-    left: 0;
-    background: var(--primary-color);
 }
 
 /* ハンバーガーメニューアイコン (モバイル用) */
@@ -271,7 +301,7 @@ nav {
     background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
     padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 影 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 影 */
     max-width: 900px;
     width: 90%;
     z-index: 5; /* 他の要素より手前 */
@@ -318,7 +348,18 @@ nav {
     display: flex;
     justify-content: center;
     gap: 25px; /* アイコン間のスペース */
+    /* 画像の白い部分をなくす調整 */
+    background-color: rgba(255, 255, 255, 0.9); /* ホームコンテンツと同じ背景色 */
+    padding: 20px; /* 少しパディングを追加 */
+    border-bottom-left-radius: 10px; /* 角丸を継承 */
+    border-bottom-right-radius: 10px; /* 角丸を継承 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 影を継承 */
+    max-width: 900px;
+    width: 90%;
+    margin: 0 auto; /* 中央寄せ */
+    /* 画像の白い部分の調整のため、home-contentの直後に配置される想定 */
 }
+
 
 .social-links a {
     font-size: 3rem; /* アイコンサイズ */
@@ -332,7 +373,165 @@ nav {
 }
 
 /* ========================================
-   6. フッター (Footer)
+   6. ABOUTページ固有スタイル (About Page Styles)
+   ======================================== */
+
+/* ページヒーローセクション（各ページ共通の冒頭部） */
+.page-hero {
+    width: 100%;
+    min-height: 40vh; /* 少し短めのヒーローセクション */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; /* ヘッダーの高さ分 */
+    background-color: var(--primary-color); /* パステル黄緑背景 */
+    color: var(--accent-color);
+    position: relative;
+    overflow: hidden;
+}
+
+.page-hero-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    animation: fadeInScale 1s ease-out forwards;
+}
+
+.page-hero-content p {
+    font-size: 1.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+/* コンテンツセクションの共通スタイル */
+.content-section {
+    padding: 80px 20px;
+    background-color: var(--background-light); /* 明るい背景 */
+    color: var(--text-color);
+}
+
+
+/* プロフィールメインビジュアル */
+.profile-main-visual {
+    text-align: center;
+    margin-bottom: 60px;
+    opacity: 0; /* JSでアニメーション */
+    animation: fadeInScale 1s ease-out forwards;
+    animation-delay: 0.3s;
+}
+
+.profile-main-visual img {
+    max-width: 400px; /* 画像の最大幅 */
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s ease; /* ホバーエフェクト用 */
+}
+
+.profile-main-visual img:hover {
+    transform: translateY(-5px); /* わずかに浮き上がる */
+}
+
+/* プロフィール詳細 */
+.profile-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* レスポンシブグリッド */
+    gap: 40px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.detail-item {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.detail-item i {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.detail-item h3 {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    margin-bottom: 10px;
+}
+
+.detail-item p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+.detail-item .color-box {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    border: 2px solid var(--accent-color); /* 枠線 */
+}
+
+/* ファンへメッセージと活動紹介 */
+.message-to-fans, .activity-intro {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    text-align: center; /* 中央寄せ */
+}
+
+.message-to-fans h3, .activity-intro h3 {
+    font-size: 1.8rem;
+    color: var(--accent-color);
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block; /* 下線をコンテンツ幅に合わせるため */
+}
+
+.message-to-fans h3::after, .activity-intro h3::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -5px;
+    height: 2px;
+    background-color: var(--primary-color);
+}
+
+.message-to-fans p, .activity-intro p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 800px; /* 長文の読みやすさのため */
+    margin: 0 auto;
+    text-align: left; /* テキストは左寄せに戻す */
+}
+
+/* スクロール時のアニメーション (JSで付与するクラス) */
+.animate-on-scroll {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================================
+   7. フッター (Footer)
    ======================================== */
 footer {
     background-color: var(--background-dark);
@@ -343,7 +542,7 @@ footer {
 }
 
 /* ========================================
-   7. アニメーション (Animations)
+   8. アニメーションキーフレーム (Animation Keyframes)
    ======================================== */
 @keyframes fadeInScale {
     from {
@@ -397,9 +596,19 @@ footer {
 }
 
 /* ========================================
-   8. レスポンシブデザイン (Responsive Design)
+   9. レスポンシブデザイン (Responsive Design)
    ======================================== */
 @media (max-width: 768px) {
+    /* グローバル */
+    .container {
+        padding: 0 15px; /* モバイルでの左右余白を狭く */
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
     /* ヘッダー */
     nav {
         flex-wrap: wrap; /* ナビゲーションアイテムを折り返す */
@@ -468,7 +677,7 @@ footer {
         margin-top: 40px; /* モバイルでの上部マージン調整 */
     }
 
-    /* お知らせセクション */
+    /* HOMEのお知らせセクション */
     .announcements h2 {
         font-size: 1.8rem;
     }
@@ -483,8 +692,60 @@ footer {
         margin-bottom: 5px; /* 日付とテキストの間のスペース */
     }
 
-    /* ソーシャルリンク */
+    /* HOMEのソーシャルリンク */
     .social-links a {
         font-size: 2.5rem; /* モバイルでのアイコンサイズ調整 */
+    }
+
+    /* ABOUTページ固有 */
+    .page-hero {
+        min-height: 30vh;
+        padding-top: 60px;
+    }
+    .page-hero-content h1 {
+        font-size: 2.5rem;
+    }
+    .page-hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .content-section {
+        padding: 50px 15px;
+    }
+
+    .profile-main-visual img {
+        max-width: 250px;
+    }
+
+    .profile-details {
+        grid-template-columns: 1fr; /* 1列表示 */
+        gap: 30px;
+        margin-bottom: 40px;
+    }
+
+    .detail-item {
+        padding: 25px;
+    }
+
+    .detail-item i {
+        font-size: 2rem;
+    }
+
+    .detail-item h3 {
+        font-size: 1.3rem;
+    }
+
+    .detail-item p {
+        font-size: 1rem;
+    }
+
+    .message-to-fans, .activity-intro {
+        padding: 30px;
+    }
+    .message-to-fans h3, .activity-intro h3 {
+        font-size: 1.5rem;
+    }
+    .message-to-fans p, .activity-intro p {
+        font-size: 1rem;
     }
 }
