@@ -1,0 +1,339 @@
+/* ベーススタイル */
+:root {
+    --primary-color: #A7D9A0; /* パステルカラーの黄緑 */
+    --accent-color: #333;   /* 宵闇をイメージさせるダークトーン */
+    --text-color: #333;
+    --background-light: #f5f5f5;
+    --background-dark: #222;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans JP', sans-serif; /* ご用意いただくフォントを指定 */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-light);
+    overflow-x: hidden; /* 横スクロール防止 */
+}
+
+a {
+    text-decoration: none;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* ヘッダー */
+header {
+    background-color: var(--background-dark);
+    color: #fff;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+}
+
+.nav-menu li {
+    margin-left: 30px;
+}
+
+.nav-menu a {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    position: relative;
+}
+
+.nav-menu a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    display: block;
+    margin-top: 5px;
+    right: 0;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+    width: 100%;
+    left: 0;
+    background: var(--primary-color);
+}
+
+/* ハンバーガーメニュー */
+.menu-toggle {
+    display: none; /* デフォルトで非表示 */
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    cursor: pointer;
+}
+
+.menu-toggle span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* HOMEセクション */
+.hero-section {
+    position: relative;
+    width: 100%;
+    min-height: 100vh; /* ビューポートの高さに合わせる */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: 80px; /* ヘッダーの高さ分 */
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.8), var(--primary-color) 80%); /* パステル黄緑のグラデーション */
+    overflow: hidden;
+}
+
+.main-visual-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px; /* 立ち絵の最大幅 */
+    margin-bottom: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-visual-standing {
+    width: 100%;
+    height: auto;
+    max-height: 70vh; /* 画面に収まるように調整 */
+    object-fit: contain;
+    z-index: 2;
+    animation: fadeInScale 1.5s ease-out forwards;
+}
+
+.visual-slideshow {
+    position: absolute;
+    width: 80%; /* 立ち絵より少し小さめ */
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+    z-index: 1; /* 立ち絵の裏に配置 */
+}
+
+.visual-slideshow .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.visual-slideshow .slide.active {
+    opacity: 1;
+}
+
+.home-content {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    width: 90%;
+    z-index: 5;
+    margin-top: 40px; /* メインビジュアルとの距離 */
+}
+
+.announcements {
+    margin-bottom: 30px;
+}
+
+.announcements h2 {
+    font-size: 2.2rem;
+    margin-bottom: 20px;
+    color: var(--accent-color);
+}
+
+.announcements ul {
+    text-align: left;
+}
+
+.announcements li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: baseline;
+}
+
+.announcements li:last-child {
+    border-bottom: none;
+}
+
+.announcements .date {
+    font-weight: bold;
+    color: var(--primary-color);
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.social-links {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* アイコン間のスペース */
+}
+
+.social-links a {
+    font-size: 3rem;
+    color: var(--accent-color);
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+    transform: translateY(-5px); /* ホバーエフェクト */
+}
+
+/* フッター */
+footer {
+    background-color: var(--background-dark);
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 50px;
+}
+
+/* アニメーション */
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 768px) {
+    nav {
+        flex-wrap: wrap;
+        padding: 0 15px;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .nav-menu {
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        background-color: var(--background-dark);
+        position: absolute;
+        top: 60px; /* ヘッダーの高さに合わせて調整 */
+        left: 0;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        padding: 20px 0;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-menu.active {
+        transform: translateY(0);
+    }
+
+    .nav-menu li {
+        margin: 15px 0;
+    }
+
+    .menu-toggle {
+        display: flex; /* 小画面で表示 */
+    }
+
+    .hero-section {
+        padding-top: 100px;
+        min-height: auto;
+    }
+
+    .main-visual-standing {
+        max-height: 50vh;
+    }
+
+    .visual-slideshow {
+        width: 90%;
+    }
+
+    .home-content {
+        padding: 20px;
+        margin-top: 20px;
+    }
+
+    .announcements h2 {
+        font-size: 1.8rem;
+    }
+
+    .announcements li {
+        font-size: 0.9rem;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .announcements .date {
+        margin-bottom: 5px;
+    }
+
+    .social-links a {
+        font-size: 2.5rem;
+    }
+}
