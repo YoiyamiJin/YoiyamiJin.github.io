@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宵闇仁 - MUSIC</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">宵闇仁</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="music.html" class="active">MUSIC</a></li>
+                <li><a href="#">MEDIA</a></li>
+                <li><a href="#">CONTACT</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-content">
+                <h1>MUSIC</h1>
+                <p>宵闇仁の楽曲ライブラリ</p>
+            </div>
+        </section>
+
+        <section class="content-section music-overview">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">最新リリース</h2>
+                <div class="latest-release-card animate-on-scroll">
+                    <img src="path/to/your/latest_album_art.jpg" alt="最新リリースアルバムアート" class="album-art">
+                    <div class="release-info">
+                        <h3>「夜明けのメロディ」</h3>
+                        <p class="release-date">2025.06.15 リリース</p>
+                        <p class="release-description">希望に満ちた歌声で贈る、宵闇仁の最新シングル。新たな一日を彩る爽やかな楽曲です。</p>
+                        <div class="listen-links">
+                            <a href="#" target="_blank" class="listen-button"><i class="fas fa-play-circle"></i> Spotifyで聴く</a>
+                            <a href="#" target="_blank" class="listen-button"><i class="fas fa-play-circle"></i> Apple Musicで聴く</a>
+                            <a href="#" target="_blank" class="listen-button"><i class="fab fa-youtube"></i> YouTubeで聴く</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section music-section original-songs-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">オリジナル楽曲</h2>
+                <div class="filter-controls animate-on-scroll">
+                    <select id="original-sort-order" class="sort-select">
+                        <option value="default">デフォルト順</option>
+                        <option value="likes_desc">高評価順</option>
+                    </select>
+                    <input type="text" id="original-search-input" class="search-input" placeholder="楽曲を検索...">
+                </div>
+                <div class="song-grid original-song-grid animate-on-scroll">
+                    <div class="no-songs-message" id="no-original-songs-message" style="display: none;">現在オリジナル楽曲はございません。</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section music-section cover-songs-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">歌ってみた</h2>
+                <div class="filter-controls animate-on-scroll">
+                    <select id="cover-sort-order" class="sort-select">
+                        <option value="default">デフォルト順</option>
+                        <option value="likes_desc">高評価順</option>
+                    </select>
+                    <input type="text" id="cover-search-input" class="search-input" placeholder="楽曲を検索...">
+                </div>
+                <div class="song-grid cover-song-grid animate-on-scroll">
+                    <div class="no-songs-message" id="no-cover-songs-message" style="display: none;">現在歌ってみた楽曲はございません。</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section music-section playlists">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">プレイリスト</h2>
+                <div class="playlist-grid animate-on-scroll">
+                    <div class="playlist-item">
+                        <img src="path/to/your/playlist1_art.jpg" alt="プレイリスト1カバー">
+                        <h4>歌ってみたセレクション</h4>
+                        <p>人気カバー曲をまとめたプレイリスト</p>
+                        <a href="#" target="_blank" class="button-small">YouTubeで再生</a>
+                    </div>
+                    <div class="playlist-item">
+                        <img src="path/to/your/playlist2_art.jpg" alt="プレイリスト2カバー">
+                        <h4>ゲーム実況BGM集</h4>
+                        <p>ゲーム実況で使われたオリジナルBGM集</p>
+                        <a href="#" target="_blank" class="button-small">Spotifyで再生</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 宵闇仁. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
