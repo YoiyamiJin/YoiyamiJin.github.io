@@ -1,12 +1,17 @@
-/* ベーススタイル */
+/* ========================================
+   1. 変数定義 (Root Variables)
+   ======================================== */
 :root {
     --primary-color: #A7D9A0; /* パステルカラーの黄緑 */
-    --accent-color: #333;   /* 宵闇をイメージさせるダークトーン */
-    --text-color: #333;
-    --background-light: #f5f5f5;
-    --background-dark: #222;
+    --accent-color: #333;   /* 宵闇をイメージさせるダークトーン (タイトル、ボタンなど) */
+    --text-color: #333;     /* 一般的なテキストの色 */
+    --background-light: #f5f5f5; /* 明るい背景色 */
+    --background-dark: #222;    /* ヘッダー、フッターの背景色 */
 }
 
+/* ========================================
+   2. グローバルスタイル (Global Styles)
+   ======================================= */
 * {
     margin: 0;
     padding: 0;
@@ -28,29 +33,31 @@ a {
 }
 
 a:hover {
-    color: var(--primary-color);
+    color: var(--primary-color); /* ホバー時の色変化 */
 }
 
 ul {
     list-style: none;
 }
 
-/* ヘッダー */
+/* ========================================
+   3. ヘッダー (Header)
+   ======================================== */
 header {
     background-color: var(--background-dark);
     color: #fff;
     padding: 1rem 0;
-    position: fixed;
+    position: fixed; /* ページ上部に固定 */
     width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    z-index: 1000; /* 最前面に表示 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 軽い影 */
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px;
+    max-width: 1200px; /* 最大幅 */
     margin: 0 auto;
     padding: 0 20px;
 }
@@ -58,7 +65,7 @@ nav {
 .logo {
     font-size: 1.8rem;
     font-weight: 700;
-    color: var(--primary-color);
+    color: var(--primary-color); /* ブランドカラー */
 }
 
 .nav-menu {
@@ -66,7 +73,7 @@ nav {
 }
 
 .nav-menu li {
-    margin-left: 30px;
+    margin-left: 30px; /* メニュー間のスペース */
 }
 
 .nav-menu a {
@@ -85,7 +92,7 @@ nav {
     margin-top: 5px;
     right: 0;
     background: var(--primary-color);
-    transition: width 0.3s ease;
+    transition: width 0.3s ease; /* ホバーで下線が伸びるアニメーション */
 }
 
 .nav-menu a:hover::after {
@@ -94,7 +101,7 @@ nav {
     background: var(--primary-color);
 }
 
-/* ハンバーガーメニュー */
+/* ハンバーガーメニューアイコン (モバイル用) */
 .menu-toggle {
     display: none; /* デフォルトで非表示 */
     flex-direction: column;
@@ -109,7 +116,7 @@ nav {
     width: 100%;
     height: 3px;
     background-color: #fff;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease; /* アニメーション */
 }
 
 .menu-toggle.active span:nth-child(1) {
@@ -124,7 +131,9 @@ nav {
     transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* HOMEセクション */
+/* ========================================
+   4. HOMEセクション (Hero Section)
+   ======================================== */
 .hero-section {
     position: relative;
     width: 100%;
@@ -135,42 +144,34 @@ nav {
     justify-content: center;
     text-align: center;
     padding-top: 80px; /* ヘッダーの高さ分 */
-    background-color: var(--primary-color); /* 背景は幾何学模様で上書きされますが、念のため */
+    background-color: var(--primary-color); /* 基本の背景色（幾何学模様が上に来る） */
     overflow: hidden;
 }
 
-/* 幾何学模様の背景 */
+/* 幾何学模様の背景アニメーション */
 .geometric-background {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    /* 複数のradial-gradientを重ねて異なるサイズのドットを表現 */
     background-image:
         radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 1px, transparent 1px),
         radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
         radial-gradient(circle at 60% 40%, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 50px 50px, 80px 80px, 120px 120px; /* サイズの異なるドット */
-    animation: moveBackground 60s linear infinite; /* アニメーション */
+    background-size: 50px 50px, 80px 80px, 120px 120px; /* 各ドットのサイズ */
+    animation: moveBackground 60s linear infinite; /* アニメーション適用 */
     z-index: 0; /* 最背面 */
-    opacity: 0.7; /* 少し透明度を設定 */
+    opacity: 0.7; /* 透明度 */
 }
 
-@keyframes moveBackground {
-    from {
-        background-position: 0 0, 0 0, 0 0;
-    }
-    to {
-        background-position: 500px 500px, 800px 800px, 1200px 1200px; /* 動く距離 */
-    }
-}
-
-
+/* メインビジュアルのコンテナ（立ち絵とスライドショーを内包） */
 .main-visual-container {
     position: relative;
     width: 100%;
     max-width: 800px; /* 立ち絵の最大幅 */
-    margin-bottom: 20px;
+    margin-bottom: 20px; /* 下のコンテンツとの距離 */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -182,10 +183,11 @@ nav {
     height: auto;
     max-height: 70vh; /* 画面に収まるように調整 */
     object-fit: contain;
-    z-index: 2;
-    animation: fadeInScale 1.5s ease-out forwards;
+    z-index: 2; /* スライドショーの上に表示 */
+    animation: fadeInScale 1.5s ease-out forwards; /* フェードインと拡大アニメーション */
 }
 
+/* 歌とゲームの姿のスライドショー */
 .visual-slideshow {
     position: absolute;
     width: 80%; /* 立ち絵より少し小さめ */
@@ -202,33 +204,33 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    opacity: 0;
-    transition: opacity 1s ease-in-out;
+    opacity: 0; /* デフォルトで非表示 */
+    transition: opacity 1s ease-in-out; /* フェードアニメーション */
 }
 
 .visual-slideshow .slide.active {
-    opacity: 1;
+    opacity: 1; /* 表示中のスライド */
 }
 
-/* ヒーローセクション内のコンテンツをまとめるラッパー */
+/* ヒーローセクション内のテキストコンテンツとボタンをまとめるラッパー */
 .hero-content-wrapper {
-    z-index: 5; /* 他の要素より手前に */
+    z-index: 5; /* 他の要素より手前に表示 */
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 40px; /* 立ち絵からの距離 */
 }
 
-/* コンセプトを表示 */
+/* コンセプト表示テキスト */
 .concept-display {
     font-size: 2.8rem;
     font-weight: 700;
     color: var(--accent-color); /* ダークトーン */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 影 */
     margin-bottom: 20px;
-    animation: slideInFromTop 1s ease-out forwards;
-    animation-delay: 0.5s;
-    opacity: 0;
+    animation: slideInFromTop 1s ease-out forwards; /* スライドインアニメーション */
+    animation-delay: 0.5s; /* 少し遅れて表示 */
+    opacity: 0; /* 初期状態は非表示 */
 }
 
 /* キャッチフレーズ */
@@ -236,25 +238,25 @@ nav {
     font-size: 1.5rem;
     color: var(--accent-color);
     margin-bottom: 40px; /* ボタンとの距離 */
-    animation: fadeIn 1.5s ease-out forwards;
+    animation: fadeIn 1.5s ease-out forwards; /* フェードインアニメーション */
     animation-delay: 1s; /* 少し遅れて表示 */
-    opacity: 0;
+    opacity: 0; /* 初期状態は非表示 */
 }
 
-/* 最新情報はこちらボタン */
+/* 「最新情報はこちら」ボタン */
 .button-latest-info {
     display: inline-block;
     background-color: var(--accent-color); /* ダークトーン */
     color: #fff;
     padding: 15px 30px;
-    border-radius: 50px; /* 丸みを帯びたボタン */
+    border-radius: 50px; /* 丸みを帯びた形状 */
     font-size: 1.2rem;
     font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    animation: fadeInButton 1.5s ease-out forwards;
+    transition: background-color 0.3s ease, transform 0.3s ease; /* ホバーアニメーション */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 影 */
+    animation: fadeInButton 1.5s ease-out forwards; /* フェードインと拡大アニメーション */
     animation-delay: 1.5s; /* 更に遅れて表示 */
-    opacity: 0;
+    opacity: 0; /* 初期状態は非表示 */
 }
 
 .button-latest-info:hover {
@@ -262,18 +264,22 @@ nav {
     transform: translateY(-3px); /* わずかに浮き上がる */
 }
 
-
+/* ========================================
+   5. HOMEコンテンツ (Announcements & Social Links)
+   ======================================== */
 .home-content {
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
     padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 影 */
     max-width: 900px;
     width: 90%;
-    z-index: 5;
+    z-index: 5; /* 他の要素より手前 */
     margin-top: 60px; /* ヒーローコンテンツからの距離 */
+    /* margin-bottom は特に指定しない（フッターが直接接するようにするため） */
 }
 
+/* お知らせセクション */
 .announcements {
     margin-bottom: 30px;
 }
@@ -290,22 +296,23 @@ nav {
 
 .announcements li {
     padding: 10px 0;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #eee; /* 下線 */
     display: flex;
     align-items: baseline;
 }
 
 .announcements li:last-child {
-    border-bottom: none;
+    border-bottom: none; /* 最後の項目は下線なし */
 }
 
 .announcements .date {
     font-weight: bold;
-    color: var(--primary-color);
+    color: var(--primary-color); /* 日付の色 */
     margin-right: 15px;
-    flex-shrink: 0;
+    flex-shrink: 0; /* 縮まないように */
 }
 
+/* ソーシャルメディアリンク */
 .social-links {
     margin-top: 30px;
     display: flex;
@@ -314,26 +321,30 @@ nav {
 }
 
 .social-links a {
-    font-size: 3rem;
+    font-size: 3rem; /* アイコンサイズ */
     color: var(--accent-color);
-    transition: transform 0.3s ease, color 0.3s ease;
+    transition: transform 0.3s ease, color 0.3s ease; /* ホバーアニメーション */
 }
 
 .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-5px); /* ホバーエフェクト */
+    transform: translateY(-5px); /* ホバーでわずかに浮き上がる */
 }
 
-/* フッター */
+/* ========================================
+   6. フッター (Footer)
+   ======================================== */
 footer {
     background-color: var(--background-dark);
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 50px;
+    margin-top: 0; /* 白い空白をなくすために0にする */
 }
 
-/* アニメーション */
+/* ========================================
+   7. アニメーション (Animations)
+   ======================================== */
 @keyframes fadeInScale {
     from {
         opacity: 0;
@@ -376,11 +387,22 @@ footer {
     }
 }
 
+@keyframes moveBackground {
+    from {
+        background-position: 0 0, 0 0, 0 0; /* 各背景レイヤーの初期位置 */
+    }
+    to {
+        background-position: 500px 500px, 800px 800px, 1200px 1200px; /* 各背景レイヤーの終点位置 */
+    }
+}
 
-/* レスポンシブデザイン */
+/* ========================================
+   8. レスポンシブデザイン (Responsive Design)
+   ======================================== */
 @media (max-width: 768px) {
+    /* ヘッダー */
     nav {
-        flex-wrap: wrap;
+        flex-wrap: wrap; /* ナビゲーションアイテムを折り返す */
         padding: 0 15px;
     }
 
@@ -389,50 +411,51 @@ footer {
     }
 
     .nav-menu {
-        flex-direction: column;
+        flex-direction: column; /* 縦並び */
         width: 100%;
         text-align: center;
         background-color: var(--background-dark);
         position: absolute;
         top: 60px; /* ヘッダーの高さに合わせて調整 */
         left: 0;
-        transform: translateY(-100%);
-        transition: transform 0.3s ease-in-out;
+        transform: translateY(-100%); /* 画面外に隠す */
+        transition: transform 0.3s ease-in-out; /* 開閉アニメーション */
         padding: 20px 0;
         box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
     }
 
     .nav-menu.active {
-        transform: translateY(0);
+        transform: translateY(0); /* 表示 */
     }
 
     .nav-menu li {
-        margin: 15px 0;
+        margin: 15px 0; /* 縦並び時の間隔 */
     }
 
     .menu-toggle {
         display: flex; /* 小画面で表示 */
     }
 
+    /* HOMEセクション */
     .hero-section {
-        padding-top: 100px;
-        min-height: auto;
+        padding-top: 100px; /* ヘッダーとの兼ね合い */
+        min-height: auto; /* コンテンツに合わせて高さを調整 */
     }
 
     .main-visual-standing {
-        max-height: 50vh;
+        max-height: 50vh; /* モバイルでの高さを調整 */
     }
 
     .visual-slideshow {
-        width: 90%;
+        width: 90%; /* モバイルでの幅を調整 */
     }
 
     .concept-display {
-        font-size: 1.8rem;
+        font-size: 1.8rem; /* モバイルでのフォントサイズ調整 */
     }
 
     .tagline {
-        font-size: 1.2rem;
+        font-size: 1.2rem; /* モバイルでのフォントサイズ調整 */
     }
 
     .button-latest-info {
@@ -442,24 +465,26 @@ footer {
 
     .home-content {
         padding: 20px;
-        margin-top: 40px; /* モバイルでの調整 */
+        margin-top: 40px; /* モバイルでの上部マージン調整 */
     }
 
+    /* お知らせセクション */
     .announcements h2 {
         font-size: 1.8rem;
     }
 
     .announcements li {
         font-size: 0.9rem;
-        flex-direction: column;
-        align-items: flex-start;
+        flex-direction: column; /* 縦並び */
+        align-items: flex-start; /* 左寄せ */
     }
 
     .announcements .date {
-        margin-bottom: 5px;
+        margin-bottom: 5px; /* 日付とテキストの間のスペース */
     }
 
+    /* ソーシャルリンク */
     .social-links a {
-        font-size: 2.5rem;
+        font-size: 2.5rem; /* モバイルでのアイコンサイズ調整 */
     }
 }
