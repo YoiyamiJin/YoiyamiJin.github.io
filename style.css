@@ -7,6 +7,9 @@
     --text-color: #333;      /* 一般的なテキストの色 */
     --background-light: #f5f5f5; /* 明るい背景色（コンテンツセクションなど） */
     --background-dark: #222;     /* ヘッダー、フッターの背景色 */
+
+    /* Primary color in RGB for box-shadow with opacity */
+    --primary-color-rgb: 167, 217, 160; /* #A7D9A0 のRGB値 */
 }
 
 /* ========================================
@@ -802,7 +805,7 @@ nav {
 
 .sort-select:focus, .search-input:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(167, 217, 160, 0.2); /* アクティブ時の光るエフェクト (primary-colorのRGB値を使用) */
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2); /* アクティブ時の光るエフェクト (primary-colorのRGB値を使用) */
     outline: none;
 }
 
@@ -810,8 +813,8 @@ nav {
     width: 250px; /* デフォルトの幅 */
 }
 
-/* 楽曲がない場合のメッセージ */
-.no-songs-message {
+/* 楽曲・動画がない場合のメッセージ */
+.no-songs-message, .no-videos-message {
     text-align: center;
     font-size: 1.2rem;
     color: #666;
@@ -821,18 +824,100 @@ nav {
 
 
 /* ========================================
-   8. フッター (Footer)
+   8. GAMEページ固有スタイル (Game Page Styles)
+   ======================================== */
+
+.game-section {
+    padding-top: 0; /* 上のセクションからの連続性を保つ */
+    padding-bottom: 80px; /* 下のセクションとの余白 */
+}
+
+/* 動画グリッドの共通スタイル */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブグリッド */
+    gap: 30px; /* アイテム間のスペース */
+    margin-top: 40px;
+}
+
+/* 各動画アイテムのスタイル */
+.video-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden; /* 角丸に合わせて動画がはみ出さないように */
+    text-align: left; /* テキストは左寄せ */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.video-item .video-thumbnail {
+    width: 100%;
+    height: 180px; /* サムネイルの固定高さ */
+    object-fit: cover; /* 画像がはみ出さず、コンテナを埋めるように */
+    display: block; /* 余分な下余白をなくす */
+}
+
+.video-item .video-info {
+    padding: 15px;
+}
+
+.video-item h4 {
+    font-size: 1.1rem;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+    min-height: 2.2em; /* タイトルが2行になっても高さを揃える */
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* 2行で省略 */
+    -webkit-box-orient: vertical;
+    font-weight: 700;
+}
+
+.video-item p.video-date {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.video-item .button-watch {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
+    margin-top: 5px; /* サムネイルとボタンの間の余白 */
+}
+
+.video-item .button-watch:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+
+/* ========================================
+   9. フッター (Footer)
    ======================================== */
 footer {
     background-color: var(--background-dark);
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 60px; /* ここを修正・追加 */
+    margin-top: 60px;
 }
 
 /* ========================================
-   9. アニメーションキーフレーム (Animation Keyframes)
+   10. アニメーションキーフレーム (Animation Keyframes)
    ======================================== */
 @keyframes fadeInScale {
     from {
@@ -886,7 +971,7 @@ footer {
 }
 
 /* ========================================
-   10. レスポンシブデザイン (Responsive Design)
+   11. レスポンシブデザイン (Responsive Design)
    ======================================== */
 @media (max-width: 768px) {
     /* グローバル */
@@ -1148,6 +1233,35 @@ footer {
         padding: 6px 15px;
     }
 
+    /* GAMEページ固有スタイル */
+    .game-section {
+        padding-bottom: 60px;
+    }
+
+    .video-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* モバイルでのグリッド */
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .video-item .video-thumbnail {
+        height: 120px; /* モバイルでのサムネイル高さ */
+    }
+
+    .video-item h4 {
+        font-size: 1rem;
+        min-height: 2em;
+    }
+
+    .video-item p.video-date {
+        font-size: 0.8rem;
+    }
+
+    .video-item .button-watch {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+
     /* フッター */
     footer {
         margin-top: 40px; /* モバイルでのフッター余白 */
@@ -1156,7 +1270,7 @@ footer {
 
 @media (max-width: 480px) {
     /* さらに小さい画面での調整 */
-    .song-grid, .playlist-grid {
+    .song-grid, .playlist-grid, .video-grid { /* video-gridも追加 */
         grid-template-columns: 1fr; /* 1列表示 */
     }
 }
