@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>宵闇仁 - GAME</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">宵闇仁</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="music.html">MUSIC</a></li>
+                <li><a href="game.html" class="active">GAME</a></li>
+                <li><a href="goods.html">GOODS</a></li>
+                <li><a href="contact.html">CONTACT</a></li>
+            </ul>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="page-hero-content">
+                <h1>GAME</h1>
+                <p>宵闇仁のゲーム実況・企画動画</p>
+            </div>
+        </section>
+
+        <section class="content-section game-section series-videos-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">シリーズ別実況</h2>
+                <div class="filter-controls animate-on-scroll">
+                    <select id="series-sort-order" class="sort-select">
+                        <option value="default">最新順</option>
+                        </select>
+                    <input type="text" id="series-search-input" class="search-input" placeholder="シリーズ名を検索...">
+                </div>
+                <div class="video-grid series-video-grid animate-on-scroll">
+                    <div class="no-videos-message" id="no-series-videos-message" style="display: none;">現在シリーズ実況動画はございません。</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section game-section project-videos-section">
+            <div class="container">
+                <h2 class="section-title animate-on-scroll">企画動画</h2>
+                <div class="filter-controls animate-on-scroll">
+                    <select id="project-sort-order" class="sort-select">
+                        <option value="default">最新順</option>
+                    </select>
+                    <input type="text" id="project-search-input" class="search-input" placeholder="企画動画を検索...">
+                </div>
+                <div class="video-grid project-video-grid animate-on-scroll">
+                    <div class="no-videos-message" id="no-project-videos-message" style="display: none;">現在企画動画はございません。</div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 宵闇仁. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
