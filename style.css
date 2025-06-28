@@ -307,78 +307,136 @@ nav {
 /* ========================================
    5. HOMEコンテンツ (Announcements & Social Links)
    ======================================== */
-.home-content {
+
+/* お知らせセクション全体 */
+.home-announcements-section {
+    padding-bottom: 0; /* SNSセクションとの間に余白を作らないため */
+}
+
+/* お知らせ内容のボックス */
+.announcements-box {
     background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
     padding: 30px 40px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 影 */
     max-width: 900px;
-    width: 90%;
-    z-index: 5; /* 他の要素より手前 */
-    margin-top: 60px; /* ヒーローコンテンツからの距離 */
-    /* margin-bottom は特に指定しない（フッターが直接接するようにするため） */
+    width: 100%; /* 親のcontainerに合わせる */
+    margin: 0 auto 60px; /* 中央寄せ、下部にマージン */
 }
 
-/* お知らせセクション */
-.announcements {
-    margin-bottom: 30px;
-}
-
-.announcements h2 {
-    font-size: 2.2rem;
-    margin-bottom: 20px;
-    color: var(--accent-color);
-}
-
-.announcements ul {
+.announcements-list {
     text-align: left;
 }
 
-.announcements li {
+.announcements-list li {
     padding: 10px 0;
     border-bottom: 1px solid #eee; /* 下線 */
     display: flex;
     align-items: baseline;
 }
 
-.announcements li:last-child {
+.announcements-list li:last-child {
     border-bottom: none; /* 最後の項目は下線なし */
 }
 
-.announcements .date {
+.announcements-list .date {
     font-weight: bold;
     color: var(--primary-color); /* 日付の色 */
     margin-right: 15px;
     flex-shrink: 0; /* 縮まないように */
 }
 
-/* ソーシャルメディアリンク */
-.social-links {
-    margin-top: 30px;
+.announcements-list .announcement-text {
+    flex-grow: 1; /* 残りのスペースを埋める */
+}
+
+/* 活動内容セクション */
+.activities-section {
+    padding-top: 0; /* お知らせセクションからの連続性を保つため */
+    padding-bottom: 80px; /* SNSセクションとの間に余白 */
+}
+
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* レスポンシブ2カラム */
+    gap: 40px; /* ボックス間のスペース */
+    margin-top: 40px;
+}
+
+.activity-item {
+    background-color: #fff; /* 白背景 */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバーアニメーション */
+}
+
+.activity-item:hover {
+    transform: translateY(-10px) scale(1.03); /* 浮き上がりと拡大 */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 影を濃く */
+}
+
+.activity-item .activity-title {
+    font-size: 1.8rem;
+    color: var(--primary-color); /* 黄緑色 */
+    margin-bottom: 15px;
+    font-weight: 700;
+}
+
+.activity-item .activity-description {
+    font-size: 1rem;
+    margin-bottom: 25px;
+    line-height: 1.7;
+}
+
+.activity-item .button-view-media {
+    display: inline-block;
+    background-color: var(--accent-color); /* ダークトーン */
+    color: #fff;
+    padding: 10px 25px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.activity-item .button-view-media:hover {
+    background-color: #555;
+    transform: translateY(-3px);
+}
+
+
+/* SNSをチェックセクション */
+.sns-check-section {
+    padding-top: 0; /* 活動内容セクションからの連続性を保つため */
+    padding-bottom: 80px; /* フッターとの間に余白 */
+}
+
+.sns-check-section .social-links { /* 既存のsocial-linksスタイルを上書き・調整 */
+    background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
+    padding: 30px; /* パディングを調整 */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto; /* 中央寄せ */
     display: flex;
     justify-content: center;
-    gap: 25px; /* アイコン間のスペース */
-    /* 画像の白い部分をなくす調整のため、home-contentの直後に配置される想定 */
-    background-color: rgba(255, 255, 255, 0.9); /* ホームコンテンツと同じ背景色 */
-    padding: 20px; /* 少しパディングを追加 */
-    border-bottom-left-radius: 10px; /* 角丸を継承 */
-    border-bottom-right-radius: 10px; /* 角丸を継承 */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 影を継承 */
-    max-width: 900px;
-    width: 90%;
-    margin: 0 auto; /* 中央寄せ */
+    gap: 30px; /* アイコン間のスペースを調整 */
 }
 
-.social-links a {
-    font-size: 3rem; /* アイコンサイズ */
+.sns-check-section .social-links a {
+    font-size: 3.5rem; /* アイコンサイズを少し大きく */
     color: var(--accent-color);
-    transition: transform 0.3s ease, color 0.3s ease; /* ホバーアニメーション */
+    transition: transform 0.3s ease, color 0.3s ease;
 }
 
-.social-links a:hover {
+.sns-check-section .social-links a:hover {
     color: var(--primary-color);
-    transform: translateY(-5px); /* ホバーでわずかに浮き上がる */
+    transform: translateY(-5px);
 }
+
 
 /* ========================================
    6. ABOUTページ固有スタイル (About Page Styles)
@@ -456,8 +514,7 @@ nav {
     padding: 30px;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    /* transform と box-shadow に加えて、scale もスムーズに変化するように transition を追加 */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
 }
 
 .detail-item:hover {
@@ -489,6 +546,7 @@ nav {
     margin: 0 auto 10px;
     border: 2px solid var(--accent-color); /* 枠線 */
 }
+
 /* ファンへメッセージと活動紹介 */
 .message-to-fans, .activity-intro {
     background-color: #fff;
@@ -545,7 +603,7 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 0; /* 白い空白をなくすために0にする */
+    margin-top: 60px; /* ここを修正・追加 */
 }
 
 /* ========================================
@@ -679,30 +737,61 @@ footer {
         padding: 12px 25px;
     }
 
-    .home-content {
+    /* HOMEコンテンツ */
+    .home-announcements-section {
+        padding-bottom: 0;
+    }
+
+    .announcements-box {
         padding: 20px;
-        margin-top: 40px; /* モバイルでの上部マージン調整 */
+        margin-bottom: 40px;
     }
 
     /* HOMEのお知らせセクション */
-    .announcements h2 {
-        font-size: 1.8rem;
-    }
-
-    .announcements li {
+    .announcements-list li {
         font-size: 0.9rem;
         flex-direction: column; /* 縦並び */
         align-items: flex-start; /* 左寄せ */
     }
 
-    .announcements .date {
+    .announcements-list .date {
         margin-bottom: 5px; /* 日付とテキストの間のスペース */
     }
 
-    /* HOMEのソーシャルリンク */
-    .social-links a {
-        font-size: 2.5rem; /* モバイルでのアイコンサイズ調整 */
+    /* 活動内容セクション */
+    .activities-section {
+        padding-bottom: 40px;
     }
+    .activities-grid {
+        grid-template-columns: 1fr; /* 1列表示 */
+        gap: 30px;
+    }
+    .activity-item {
+        padding: 25px;
+    }
+    .activity-item .activity-title {
+        font-size: 1.5rem;
+    }
+    .activity-item .activity-description {
+        font-size: 0.95rem;
+    }
+    .activity-item .button-view-media {
+        font-size: 0.9rem;
+        padding: 8px 20px;
+    }
+
+    /* SNSをチェックセクション */
+    .sns-check-section {
+        padding-bottom: 40px;
+    }
+    .sns-check-section .social-links {
+        padding: 20px;
+        gap: 20px;
+    }
+    .sns-check-section .social-links a {
+        font-size: 3rem;
+    }
+
 
     /* ABOUTページ固有 */
     .page-hero {
@@ -754,5 +843,10 @@ footer {
     }
     .message-to-fans p, .activity-intro p {
         font-size: 1rem;
+    }
+
+    /* フッター */
+    footer {
+        margin-top: 40px; /* モバイルでのフッター余白 */
     }
 }
