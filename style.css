@@ -1335,10 +1335,211 @@ footer {
         padding-bottom: 60px;
     }
 
-    /* ========================================
-       13. CONTACTページ固有スタイル (Contact Page Styles)
-       ======================================== */
+/* ========================================
+   13. CONTACTページ固有スタイル (Contact Page Styles)
+   ======================================== */
 
+.contact-section, .qa-section {
+    padding-bottom: 80px; /* セクション間の余白 */
+    background-color: #fcfcfc; /* フォームセクションの背景色を白に近い色に */
+}
+
+.contact-intro-text, .qa-intro-text {
+    text-align: center;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    max-width: 700px;
+    margin: 0 auto 50px; /* 下部に余白 */
+}
+
+/* フォーム全体 */
+.contact-form {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 5px; /* 角丸を少なくする */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 影を薄くする */
+    max-width: 700px; /* フォームの最大幅 */
+    margin: 0 auto; /* 中央寄せ */
+    border: 1px solid #eee; /* 薄い枠線を追加 */
+}
+
+.form-group {
+    margin-bottom: 25px; /* 各入力フィールド間のスペース */
+}
+
+.form-group label {
+    display: block; /* ラベルをブロック要素にして改行 */
+    font-size: 1rem; /* ラベルのフォントサイズを画像に合わせる */
+    color: var(--text-color); /* 通常のテキストカラー */
+    margin-bottom: 8px; /* ラベルと入力欄の間のスペース */
+    font-weight: 400; /* フォントの太さを標準に */
+}
+
+.form-group .form-icon {
+    /* アイコンは画像にないので非表示にするか削除 */
+    /* display: none; */
+    margin-right: 8px;
+    color: var(--primary-color);
+}
+
+.form-group .required {
+    color: #E74C3C; /* 赤色を画像に合わせて調整 */
+    font-size: 0.9em;
+    margin-left: 5px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px; /* パディングを画像に合わせる */
+    border: 1px solid #ddd; /* 薄いグレーの枠線 */
+    border-radius: 3px; /* 角丸を少なくする */
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: #fff; /* 背景を白に */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="email"]::placeholder,
+.form-group textarea::placeholder {
+    color: #bbb; /* プレースホルダーの色を薄くする */
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: #A7D9A0; /* フォーカス時に黄緑の枠線 */
+    box-shadow: 0 0 0 1px #A7D9A0; /* 光るエフェクトを細くする */
+    outline: none;
+    background-color: #fff;
+}
+
+.form-group textarea {
+    resize: vertical; /* 垂直方向のみリサイズ可能 */
+    min-height: 120px; /* 最小の高さ */
+}
+
+.submit-button {
+    display: block; /* 中央寄せのためブロック要素に */
+    width: auto; /* コンテンツに合わせて幅を調整 */
+    margin: 30px auto 15px; /* 上部と下部の余白、中央寄せ */
+    background-color: #6C8E2C; /* 濃い緑のボタン色を維持 */
+    color: #fff;
+    padding: 15px 35px;
+    border: none;
+    border-radius: 5px; /* 角丸を少なくする */
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex; /* アイコンとテキストを中央揃え */
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.submit-button:hover {
+    background-color: #5B7A25; /* ホバーで少し暗く */
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.form-note {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 10px;
+}
+
+
+/* Q&Aリスト (変更なし) */
+.qa-list {
+    margin-top: 40px;
+}
+
+.qa-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    overflow: hidden; /* 回答が折りたたまれた時に高さを調整 */
+    transition: all 0.3s ease; /* 開閉アニメーション用 */
+    border: 1px solid #eee;
+}
+
+.qa-item .question {
+    display: flex;
+    align-items: center;
+    padding: 20px 25px;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.3s ease;
+}
+
+.qa-item .question:hover {
+    background-color: #f0f0f0;
+}
+
+.qa-item .qa-icon {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-right: 15px;
+}
+
+.qa-item .question h3 {
+    font-size: 1.2rem;
+    color: var(--accent-color);
+    flex-grow: 1; /* 残りのスペースを埋める */
+    font-weight: 700;
+}
+
+.qa-item .toggle-icon {
+    font-size: 1.2rem;
+    color: #666;
+    transition: transform 0.3s ease;
+}
+
+.qa-item.active .toggle-icon {
+    transform: rotate(180deg); /* 開いた時に矢印を反転 */
+}
+
+.qa-item .answer {
+    padding: 0 25px;
+    max-height: 0; /* 初期状態で非表示 */
+    overflow: hidden;
+    transition: max-height 0.4s ease-out, padding 0.4s ease-out; /* アニメーション */
+    background-color: #fff;
+}
+
+.qa-item.active .answer {
+    max-height: 300px; /* 十分な高さ (内容に合わせて調整) */
+    padding: 20px 25px 25px; /* 開いた時のパディング */
+}
+
+.qa-item .answer p {
+    font-size: 1rem;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+.qa-item .answer .text-link {
+    color: var(--primary-color);
+    font-weight: 700;
+}
+.qa-item .answer .text-link:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+
+/* レスポンシブデザインの調整 */
+@media (max-width: 768px) {
     .contact-section, .qa-section {
         padding-bottom: 60px;
     }
@@ -1355,15 +1556,15 @@ footer {
         margin-bottom: 20px;
     }
     .form-group label {
-        font-size: 1rem;
-        margin-bottom: 8px;
+        font-size: 0.95rem; /* モバイルでのラベルフォントサイズ */
+        margin-bottom: 6px;
     }
     .form-group input[type="text"],
     .form-group input[type="email"],
     .form-group select,
     .form-group textarea {
-        padding: 10px 12px;
-        font-size: 0.95rem;
+        padding: 8px 10px; /* モバイルでのパディング */
+        font-size: 0.9rem;
     }
     .form-group textarea {
         min-height: 100px;
@@ -1395,22 +1596,5 @@ footer {
     }
     .qa-item .answer p {
         font-size: 0.95rem;
-    }
-}
-
-@media (max-width: 480px) {
-    /* さらに小さい画面での調整 */
-    .song-grid, .playlist-grid, .video-grid { /* video-gridも追加 */
-        grid-template-columns: 1fr; /* 1列表示 */
-    }
-
-    /* GOODSページ */
-    .button-primary-large {
-        font-size: 1.1rem;
-        padding: 12px 25px;
-        min-width: 220px;
-    }
-    .button-primary-large i {
-        font-size: 1.2rem;
     }
 }
