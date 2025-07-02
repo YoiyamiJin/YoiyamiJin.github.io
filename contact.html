@@ -32,138 +32,115 @@
 
     <main>
         <section class="page-hero">
+            <div class="geometric-background"></div>
             <div class="page-hero-content">
                 <h1>CONTACT</h1>
                 <p>お問い合わせ・よくある質問</p>
             </div>
         </section>
 
-        <section id="general-contact" class="content-section contact-section">
+        <section class="content-section contact-section">
             <div class="container">
-                <h2 class="section-title">CONTACT</h2>
+                <h2 class="section-title animate-on-scroll">CONTACT FORM</h2>
                 <p class="contact-intro-text animate-on-scroll">
-                    宵闇仁へのお問い合わせは、以下のフォームよりお願いいたします。<br>
-                    内容を確認後、担当者よりご連絡させていただきます。
+                    宵闇仁へのお問い合わせはこちらのフォームをご利用ください。<br>
+                    内容によっては返信にお時間をいただく場合がございます。あらかじめご了承ください。
                 </p>
 
                 <form id="contact-form" class="contact-form animate-on-scroll">
                     <div class="form-group">
-                        <label for="inquiry-type">
-                            <i class="fas fa-list-check form-icon"></i> お問い合わせ内容に適しているものをお選びください <span class="required">*</span>
-                        </label>
-                        <select id="inquiry-type" name="inquiry-type" required>
+                        <label for="inquiry-type">お問い合わせ内容に適しているものをお選びください <span class="required">*</span></label>
+                        <select id="inquiry-type" name="inquiryType" required>
                             <option value="">選択してください</option>
-                            <option value="business">仕事依頼</option>
-                            <option value="goods">グッズ関連</option>
-                            <option value="other">その他</option>
+                            <option value="お仕事のご依頼">お仕事のご依頼</option>
+                            <option value="ファンレター">ファンレター</option>
+                            <option value="その他">その他</option>
                         </select>
                     </div>
 
                     <div class="form-group">
-                        <label for="full-name">
-                            <i class="fas fa-user form-icon"></i> お名前 (フルネーム) <span class="required">*</span>
-                        </label>
-                        <input type="text" id="full-name" name="full-name" placeholder="名前を記入してください" required>
+                        <label for="full-name">お名前 <span class="required">*</span></label>
+                        <input type="text" id="full-name" name="fullName" placeholder="名前を記入してください" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="email">
-                            <i class="fas fa-envelope form-icon"></i> メールアドレス <span class="required">*</span>
-                        </label>
+                        <label for="email">メールアドレス <span class="required">*</span></label>
                         <input type="email" id="email" name="email" placeholder="メールアドレスを記入してください" required>
                     </div>
 
                     <div class="form-group">
-                        <label for="subject">
-                            <i class="fas fa-tag form-icon"></i> お問い合わせ件名 <span class="required">*</span>
-                        </label>
-                        <input type="text" id="subject" name="subject" placeholder="件名を記入してください" required>
+                        <label for="subject">件名</label>
+                        <input type="text" id="subject" name="subject" placeholder="件名を記入してください">
                     </div>
 
                     <div class="form-group">
-                        <label for="message">
-                            <i class="fas fa-pen-to-square form-icon"></i> お問い合わせ内容 <span class="required">*</span>
-                        </label>
+                        <label for="message">お問い合わせ内容 <span class="required">*</span></label>
                         <textarea id="message" name="message" rows="8" placeholder="内容を記入してください" required></textarea>
                     </div>
 
-                    <button type="submit" class="submit-button"><i class="fas fa-paper-plane"></i> 送信する</button>
-                    <p class="form-note"><span class="required">*</span> は必須入力項目です。</p>
+                    <div class="form-group privacy-policy-group">
+                        <input type="checkbox" id="privacy-policy" name="privacyPolicy" required>
+                        <label for="privacy-policy">プライバシーポリシーに同意する <span class="required">*</span></label>
+                    </div>
+
+                    <button type="submit" class="submit-button">送信する</button>
+                    <p class="form-note">※必須項目は「<span class="required">*</span>」で表示されています。</p>
                 </form>
             </div>
         </section>
 
-        <section id="qa-for-fans" class="content-section qa-section">
+        <section class="content-section qa-section">
             <div class="container">
-                <h2 class="section-title">Q&A</h2>
+                <h2 class="section-title animate-on-scroll">Q&A</h2>
                 <p class="qa-intro-text animate-on-scroll">
-                    ファンの皆様からよくいただくご質問とその回答をまとめました。
-                    お問い合わせいただく前に、こちらをご確認いただけますと幸いです。
+                    よくある質問とその回答をまとめました。お問い合わせの前に一度ご確認ください。
                 </p>
-
-                <div class="qa-list">
-                    <div class="qa-item animate-on-scroll">
+                <div class="qa-list animate-on-scroll">
+                    <div class="qa-item">
                         <div class="question">
-                            <i class="fas fa-comment-dots qa-icon"></i>
-                            <h3>宵闇仁のライブやイベントに参加するにはどうすればいいですか？</h3>
+                            <i class="fas fa-question-circle qa-icon"></i>
+                            <h3>ファンレターやプレゼントは送れますか？</h3>
                             <i class="fas fa-chevron-down toggle-icon"></i>
                         </div>
                         <div class="answer">
-                            <p>
-                                ライブやイベントの開催情報は、当ウェブサイトの<a href="index.html#announcements" class="text-link">「お知らせ」</a>セクションや、公式X（旧Twitter）などのSNSで随時発表しています。チケットの先行販売や一般販売の情報もそちらをご確認ください。
+                            <p>はい、お送りいただけます。以下の住所までお送りください。<br>
+                                〒XXX-XXXX 東京都〇〇区△△ビル123 宵闇仁 宛<br>
+                                ※生ものや危険物など、一部お受け取りできないものもございます。詳細は<a href="#" class="text-link">こちら</a>をご確認ください。
                             </p>
                         </div>
                     </div>
-
-                    <div class="qa-item animate-on-scroll">
+                    <div class="qa-item">
                         <div class="question">
-                            <i class="fas fa-comment-dots qa-icon"></i>
-                            <h3>ファンレターやプレゼントを送りたいのですが、宛先はありますか？</h3>
+                            <i class="fas fa-question-circle qa-icon"></i>
+                            <h3>コラボレーションの依頼は可能ですか？</h3>
                             <i class="fas fa-chevron-down toggle-icon"></i>
                         </div>
                         <div class="answer">
-                            <p>
-                                はい、ファンレターは以下の宛先でお受け取りできます。<br>
-                                〒XXX-XXXX 東京都〇〇区△△ 1-2-3 宵闇仁ファンレター係<br>
-                                プレゼントについては、安全管理上の理由から、飲食物、現金、金券、生もの、高価なものなど、一部お受け取りできない場合がございます。詳細については、改めて公式ウェブサイトでガイドラインを設ける予定です。
+                            <p>はい、可能です。お仕事のご依頼は、お問い合わせフォームより詳細をご記入の上ご連絡ください。<br>
+                                内容を確認後、担当者よりご連絡させていただきます。
                             </p>
                         </div>
                     </div>
-
-                    <div class="qa-item animate-on-scroll">
+                    <div class="qa-item">
                         <div class="question">
-                            <i class="fas fa-comment-dots qa-icon"></i>
-                            <h3>ファンアートや二次創作活動は許可されていますか？</h3>
+                            <i class="fas fa-question-circle qa-icon"></i>
+                            <h3>イベント出演情報はどこで確認できますか？</h3>
                             <i class="fas fa-chevron-down toggle-icon"></i>
                         </div>
                         <div class="answer">
-                            <p>
-                                宵闇仁のファンアートや二次創作活動は、個人の範囲でお楽しみいただく限りにおいて、基本的に歓迎しております。ただし、公序良俗に反するもの、公式と誤解を招くような表現、商業目的での利用はご遠慮ください。著作権に関わる詳しいガイドラインは、後日別途発表を予定しております。
-                            </p>
-                        </div>
-                    </div>
-
-                    <div class="qa-item animate-on-scroll">
-                        <div class="question">
-                            <i class="fas fa-comment-dots qa-icon"></i>
-                            <h3>過去の楽曲や動画はどこで視聴できますか？</h3>
-                            <i class="fas fa-chevron-down toggle-icon"></i>
-                        </div>
-                        <div class="answer">
-                            <p>
-                                楽曲は<a href="music.html" class="text-link">「MUSIC」ページ</a>に主要な配信サイトへのリンクを掲載しています。動画については<a href="game.html" class="text-link">「GAME」ページ</a>（ゲーム実況動画）や、公式YouTubeチャンネルにて公開しています。ぜひチェックしてください！
+                            <p>イベント出演情報は、当サイトのHOMEページのお知らせ欄、または各SNS（YouTube、TikTok、Xなど）で随時発表いたします。<br>
+                                通知をオンにしていただくと、最新情報をいち早くキャッチできます。
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; 2025 Yoyami Jin Official. All rights reserved.</p>
+            <p>© 2025 宵闇仁. All rights reserved.</p>
         </div>
     </footer>
 
