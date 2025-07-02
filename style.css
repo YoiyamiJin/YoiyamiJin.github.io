@@ -187,59 +187,65 @@ nav {
     justify-content: center;
     text-align: center;
     padding-top: 80px; /* ヘッダーの高さ分 */
-    background-color: var(--primary-color); /* 基本の背景色（幾何学模様が上に来る） */
+    /* 背景色とグラデーションの調整 (image_23a1a3.png に合わせる) */
+    background: linear-gradient(to bottom right, #A7D9A0, #BEEB9F); /* 上部左から右下へ黄緑のグラデーション */
+    color: var(--accent-color); /* テキスト色を黄緑と合わせる */
     overflow: hidden;
 }
 
-/* 幾何学模様の背景アニメーション */
+/* 幾何学模様の背景アニメーション (今回は画像にないので非表示にするか、別途調整) */
 .geometric-background {
+    /* display: none; */ /* 必要なければ非表示 */
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    /* 複数のradial-gradientを重ねて異なるサイズのドットを表現 */
     background-image:
         radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 1px, transparent 1px),
         radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 1px, transparent 1px),
         radial-gradient(circle at 60% 40%, rgba(255,255,255,0.1) 1px, transparent 1px);
-    background-size: 50px 50px, 80px 80px, 120px 120px; /* 各ドットのサイズ */
-    animation: moveBackground 60s linear infinite; /* アニメーション適用 */
-    z-index: 0; /* 最背面 */
-    opacity: 0.7; /* 透明度 */
+    background-size: 50px 50px, 80px 80px, 120px 120px;
+    animation: moveBackground 60s linear infinite;
+    z-index: 0;
+    opacity: 0.7;
 }
 
 /* メインビジュアルのコンテナ（立ち絵とスライドショーを内包） */
 .main-visual-container {
+    /* 画像に表示されていないため、ここでは一旦非表示にするか、レイアウトに合わせて調整 */
+    display: none; /* 画像には立ち絵がないため非表示 */
     position: relative;
     width: 100%;
-    max-width: 800px; /* 立ち絵の最大幅 */
-    margin-bottom: 20px; /* 下のコンテンツとの距離 */
+    max-width: 800px;
+    margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 2; /* 幾何学模様の上に表示 */
+    z-index: 2;
 }
 
 .main-visual-standing {
     width: 100%;
     height: auto;
-    max-height: 70vh; /* 画面に収まるように調整 */
+    max-height: 70vh;
     object-fit: contain;
-    z-index: 2; /* スライドショーの上に表示 */
-    animation: fadeInScale 1.5s ease-out forwards; /* フェードインと拡大アニメーション */
+    z-index: 2;
+    animation: fadeInScale 1.5s ease-out forwards;
+    animation-delay: 0.5s;
+    opacity: 0;
 }
 
 /* 歌とゲームの姿のスライドショー */
 .visual-slideshow {
     position: absolute;
-    width: 80%; /* 立ち絵より少し小さめ */
+    width: 80%;
     height: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     overflow: hidden;
-    z-index: 1; /* 立ち絵の裏に配置 */
+    z-index: 1;
 }
 
 .visual-slideshow .slide {
@@ -247,64 +253,64 @@ nav {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    opacity: 0; /* デフォルトで非表示 */
-    transition: opacity 1s ease-in-out; /* フェードアニメーション */
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
 }
 
 .visual-slideshow .slide.active {
-    opacity: 1; /* 表示中のスライド */
+    opacity: 1;
 }
 
 /* ヒーローセクション内のテキストコンテンツとボタンをまとめるラッパー */
 .hero-content-wrapper {
-    z-index: 5; /* 他の要素より手前に表示 */
+    z-index: 5;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 40px; /* 立ち絵からの距離 */
+    margin-top: 0; /* 立ち絵がないため、上部からのマージンをなくす */
 }
 
-/* コンセプト表示テキスト */
+/* コンセプト表示テキスト (image_23a1a3.png に合わせる) */
 .concept-display {
-    font-size: 2.8rem;
+    font-size: 3.5rem; /* 画像に合わせる */
     font-weight: 700;
-    color: var(--accent-color); /* ダークトーン */
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1); /* 影 */
-    margin-bottom: 20px;
-    animation: slideInFromTop 1s ease-out forwards; /* スライドインアニメーション */
-    animation-delay: 0.5s; /* 少し遅れて表示 */
-    opacity: 0; /* 初期状態は非表示 */
+    color: var(--accent-color);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px; /* 画像に合わせる */
+    animation: slideInFromTop 1s ease-out forwards;
+    animation-delay: 0.2s;
+    opacity: 0;
 }
 
-/* キャッチフレーズ */
+/* キャッチフレーズ (image_23a1a3.png に合わせる) */
 .tagline {
-    font-size: 1.5rem;
+    font-size: 1.2rem; /* 画像に合わせる */
     color: var(--accent-color);
     margin-bottom: 40px; /* ボタンとの距離 */
-    animation: fadeIn 1.5s ease-out forwards; /* フェードインアニメーション */
-    animation-delay: 1s; /* 少し遅れて表示 */
-    opacity: 0; /* 初期状態は非表示 */
+    animation: fadeIn 1.5s ease-out forwards;
+    animation-delay: 0.7s;
+    opacity: 0;
 }
 
-/* 「最新情報はこちら」ボタン */
+/* 「最新情報はこちら」ボタン (image_23a1a3.png に合わせる) */
 .button-latest-info {
     display: inline-block;
-    background-color: var(--accent-color); /* ダークトーン */
+    background-color: #6C8E2C; /* 画像のボタン色に合わせる（濃い緑） */
     color: #fff;
     padding: 15px 30px;
-    border-radius: 50px; /* 丸みを帯びた形状 */
-    font-size: 1.2rem;
+    border-radius: 5px; /* 角丸を少なくする */
+    font-size: 1.1rem; /* 画像に合わせる */
     font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease; /* ホバーアニメーション */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* 影 */
-    animation: fadeInButton 1.5s ease-out forwards; /* フェードインと拡大アニメーション */
-    animation-delay: 1.5s; /* 更に遅れて表示 */
-    opacity: 0; /* 初期状態は非表示 */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeInButton 1.5s ease-out forwards;
+    animation-delay: 1.2s;
+    opacity: 0;
 }
 
 .button-latest-info:hover {
-    background-color: #555; /* ホバーで少し暗く */
-    transform: translateY(-3px); /* わずかに浮き上がる */
+    background-color: #5B7A25; /* ホバーで少し暗く */
+    transform: translateY(-3px);
 }
 
 /* ========================================
@@ -313,18 +319,19 @@ nav {
 
 /* お知らせセクション全体 */
 .home-announcements-section {
-    padding-bottom: 0; /* SNSセクションとの間に余白を作らないため */
+    padding-bottom: 0;
+    padding-top: 80px; /* 上部に間隔 */
 }
 
 /* お知らせ内容のボックス */
 .announcements-box {
-    background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
+    background-color: rgba(255, 255, 255, 0.9);
     padding: 30px 40px;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* 影 */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     max-width: 900px;
-    width: 100%; /* 親のcontainerに合わせる */
-    margin: 0 auto 60px; /* 中央寄せ、下部にマージン */
+    width: 100%;
+    margin: 0 auto 60px;
 }
 
 .announcements-list {
@@ -333,55 +340,57 @@ nav {
 
 .announcements-list li {
     padding: 10px 0;
-    border-bottom: 1px solid #eee; /* 下線 */
+    border-bottom: 1px solid #eee;
     display: flex;
     align-items: baseline;
 }
 
 .announcements-list li:last-child {
-    border-bottom: none; /* 最後の項目は下線なし */
+    border-bottom: none;
 }
 
 .announcements-list .date {
     font-weight: bold;
-    color: var(--primary-color); /* 日付の色 */
+    color: var(--primary-color);
     margin-right: 15px;
-    flex-shrink: 0; /* 縮まないように */
+    flex-shrink: 0;
 }
 
 .announcements-list .announcement-text {
-    flex-grow: 1; /* 残りのスペースを埋める */
+    flex-grow: 1;
 }
 
 /* 活動内容セクション */
 .activities-section {
-    padding-top: 0; /* お知らせセクションからの連続性を保つため */
-    padding-bottom: 80px; /* SNSセクションとの間に余白 */
+    padding-top: 0;
+    padding-bottom: 60px; /* SNSセクションとの間に余白 */
+    background-color: var(--background-light);
 }
 
 .activities-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* レスポンシブ2カラム */
-    gap: 40px; /* ボックス間のスペース */
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* image_19295d.png に合わせる */
+    gap: 40px;
     margin-top: 40px;
 }
 
 .activity-item {
     background-color: #fff; /* 白背景 */
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 10px; /* 少し角丸に */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
     text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* ホバーアニメーション */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 2px solid var(--primary-color); /* 黄緑の枠線 */
 }
 
 .activity-item:hover {
-    transform: translateY(-10px) scale(1.03); /* 浮き上がりと拡大 */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 影を濃く */
+    transform: translateY(-5px); /* わずかに浮き上がる */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 影を濃く */
 }
 
 .activity-item .activity-title {
-    font-size: 1.8rem;
+    font-size: 2.2rem; /* image_19295d.png のタイトルサイズに合わせる */
     color: var(--primary-color); /* 黄緑色 */
     margin-bottom: 15px;
     font-weight: 700;
@@ -389,49 +398,50 @@ nav {
 
 .activity-item .activity-description {
     font-size: 1rem;
-    margin-bottom: 25px;
+    margin-bottom: 30px; /* ボタンとの距離 */
     line-height: 1.7;
 }
 
 .activity-item .button-view-media {
     display: inline-block;
-    background-color: var(--accent-color); /* ダークトーン */
+    background-color: #6C8E2C; /* image_19295d.png のボタン色に合わせる（濃い緑） */
     color: #fff;
     padding: 10px 25px;
-    border-radius: 50px;
+    border-radius: 5px; /* 角丸を少なくする */
     font-size: 1rem;
     font-weight: 700;
     transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .activity-item .button-view-media:hover {
-    background-color: #555;
+    background-color: #5B7A25; /* ホバーで少し暗く */
     transform: translateY(-3px);
 }
 
 
 /* SNSをチェックセクション */
 .sns-check-section {
-    padding-top: 0; /* 活動内容セクションからの連続性を保つため */
+    padding-top: 60px; /* 活動内容セクションからの間隔 */
     padding-bottom: 80px; /* フッターとの間に余白 */
+    background-color: #e8e8e8; /* image_234424.png のような薄いグレーの背景色 */
 }
 
 .sns-check-section .social-links { /* 既存のsocial-linksスタイルを上書き・調整 */
-    background-color: rgba(255, 255, 255, 0.9); /* 半透明の白背景 */
-    padding: 30px; /* パディングを調整 */
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    background-color: transparent; /* 背景なし */
+    padding: 0; /* パディングなし */
+    border-radius: 0;
+    box-shadow: none; /* 影なし */
     max-width: 900px;
     width: 100%;
-    margin: 0 auto; /* 中央寄せ */
+    margin: 0 auto;
     display: flex;
     justify-content: center;
-    gap: 30px; /* アイコン間のスペースを調整 */
+    gap: 50px; /* アイコン間のスペースを広げる */
 }
 
 .sns-check-section .social-links a {
-    font-size: 3.5rem; /* アイコンサイズを少し大きく */
-    color: var(--accent-color);
+    font-size: 4rem; /* アイコンサイズを大きく */
+    color: var(--accent-color); /* ダークトーン */
     transition: transform 0.3s ease, color 0.3s ease;
 }
 
@@ -476,864 +486,9 @@ nav {
 
 /* コンテンツセクションの共通スタイル */
 .content-section {
-    padding: 80px 20px;
-    background-color: var(--background-light); /* 明るい背景 */
-    color: var(--text-color);
+    padding: 80px 0;
+    background-color: var(--background-light);
 }
-
-/* プロフィールメインビジュアル */
-.profile-main-visual {
-    text-align: center;
-    margin-bottom: 60px;
-    opacity: 0; /* JSでアニメーション */
-    animation: fadeInScale 1s ease-out forwards;
-    animation-delay: 0.3s;
-}
-
-.profile-main-visual img {
-    max-width: 400px; /* 画像の最大幅 */
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease; /* ホバーエフェクト用 */
-}
-
-.profile-main-visual img:hover {
-    transform: translateY(-5px); /* わずかに浮き上がる */
-}
-
-/* プロフィール詳細 */
-.profile-details {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* レスポンシブグリッド */
-    gap: 40px;
-    margin-bottom: 60px;
-    text-align: center;
-}
-
-.detail-item {
-    background-color: #fff; /* 色は変えない */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.detail-item:hover {
-    transform: translateY(-10px) scale(1.03); /* わずかに浮き上がり、かつ3%拡大 */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); /* 影をより濃く、広げる */
-}
-
-.detail-item i {
-    font-size: 2.5rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-}
-
-.detail-item h3 {
-    font-size: 1.5rem;
-    color: var(--accent-color);
-    margin-bottom: 10px;
-}
-
-.detail-item p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-}
-
-.detail-item .color-box {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    margin: 0 auto 10px;
-    border: 2px solid var(--accent-color); /* 枠線 */
-}
-
-/* ファンへメッセージと活動紹介 */
-.message-to-fans, .activity-intro {
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    margin-bottom: 40px;
-    text-align: center; /* 中央寄せ */
-}
-
-.message-to-fans h3, .activity-intro h3 {
-    font-size: 1.8rem;
-    color: var(--accent-color);
-    margin-bottom: 20px;
-    position: relative;
-    display: inline-block; /* 下線をコンテンツ幅に合わせるため */
-}
-
-.message-to-fans h3::after, .activity-intro h3::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: -5px;
-    height: 2px;
-    background-color: var(--primary-color);
-}
-
-.message-to-fans p, .activity-intro p {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    max-width: 800px; /* 長文の読みやすさのため */
-    margin: 0 auto;
-    text-align: left; /* テキストは左寄せに戻す */
-}
-
-/* スクロール時のアニメーション (JSで付与するクラス) */
-.animate-on-scroll {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.is-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-
-/* ========================================
-   7. MUSICページ固有スタイル (Music Page Styles)
-   ======================================== */
-
-/* 最新リリースセクション */
-.music-overview {
-    padding-bottom: 80px; /* 次のセクションとの間隔調整 */
-}
-
-.latest-release-card {
-    display: flex;
-    flex-direction: row; /* デスクトップでは横並び */
-    align-items: center;
-    background-color: #fff;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    max-width: 900px;
-    margin: 0 auto 0; /* 下部のマージンはsectionのpadding-bottomで調整 */
-    gap: 40px; /* 画像と情報の間のスペース */
-}
-
-.latest-release-card .album-art {
-    width: 250px;
-    height: 250px;
-    border-radius: 10px;
-    object-fit: cover;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0; /* 縮まないように */
-}
-
-.latest-release-card .release-info {
-    flex-grow: 1;
-    text-align: left;
-}
-
-.latest-release-card .release-info h3 {
-    font-size: 2rem;
-    color: var(--accent-color);
-    margin-bottom: 10px;
-}
-
-.latest-release-card .release-date {
-    font-size: 1.1rem;
-    color: var(--primary-color);
-    margin-bottom: 15px;
-    font-weight: 700;
-}
-
-.latest-release-card .release-description {
-    font-size: 1rem;
-    line-height: 1.7;
-    margin-bottom: 30px;
-}
-
-.latest-release-card .listen-links {
-    display: flex;
-    flex-wrap: wrap; /* ボタンが複数行になる場合に対応 */
-    gap: 15px; /* ボタン間のスペース */
-}
-
-.latest-release-card .listen-button {
-    display: inline-flex; /* アイコンとテキストを中央揃え */
-    align-items: center;
-    background-color: var(--primary-color);
-    color: var(--accent-color);
-    padding: 12px 25px;
-    border-radius: 50px;
-    font-size: 1rem;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.latest-release-card .listen-button i {
-    margin-right: 8px;
-    font-size: 1.2rem; /* アイコンサイズ */
-    color: var(--accent-color); /* アイコンの色 */
-}
-
-.latest-release-card .listen-button:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-    transform: translateY(-3px);
-}
-
-.latest-release-card .listen-button:hover i {
-    color: var(--primary-color); /* ホバー時にアイコンの色を変える */
-}
-
-
-/* 全楽曲セクションとプレイリストセクションの共通設定 */
-.music-section {
-    padding-top: 0; /* 上のセクションからの連続性を保つ */
-    padding-bottom: 80px; /* 下のセクションとの余白 */
-}
-
-/* 楽曲グリッドとプレイリストグリッドの共通スタイル */
-.song-grid, .playlist-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* レスポンシブグリッド */
-    gap: 30px; /* アイテム間のスペース */
-    margin-top: 40px;
-}
-
-/* 楽曲アイテムとプレイリストアイテムの共通スタイル */
-.song-item, .playlist-item {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.song-item:hover, .playlist-item:hover {
-    transform: translateY(-5px) scale(1.02); /* わずかに浮き上がり、拡大 */
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* 影を濃く */
-}
-
-.song-item img, .playlist-item img {
-    width: 100%;
-    height: auto;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-.song-item h4, .playlist-item h4 {
-    font-size: 1.2rem;
-    color: var(--accent-color);
-    margin-bottom: 5px;
-    min-height: 2.4em; /* タイトルが2行になっても高さを揃える */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.song-item p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-.song-item .likes-count { /* Likesカウントのスタイル */
-    font-size: 0.85rem;
-    color: var(--primary-color);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 5px; /* アイコンとテキストの間隔 */
-}
-
-.song-item .likes-count i {
-    font-size: 1rem; /* ハートアイコンのサイズ */
-}
-
-.playlist-item p {
-    font-size: 0.9rem;
-    color: #666;
-    margin-bottom: 15px;
-}
-
-/* 共通の小さいボタン (「聴く」など) */
-.button-small {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--accent-color);
-    padding: 8px 20px;
-    border-radius: 50px;
-    font-size: 0.9rem;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-}
-
-.button-small:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-/* フィルタリングと検索コントロール */
-.filter-controls {
-    display: flex;
-    justify-content: flex-end; /* 右寄せ */
-    align-items: center;
-    gap: 20px; /* アイテム間のスペース */
-    margin-bottom: 40px; /* グリッドとのスペース */
-    flex-wrap: wrap; /* 小画面で折り返し */
-}
-
-.sort-select, .search-input {
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 1rem;
-    color: var(--text-color);
-    background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.sort-select:focus, .search-input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2); /* アクティブ時の光るエフェクト (primary-colorのRGB値を使用) */
-    outline: none;
-}
-
-.search-input {
-    width: 250px; /* デフォルトの幅 */
-}
-
-/* 楽曲・動画がない場合のメッセージ */
-.no-songs-message, .no-videos-message {
-    text-align: center;
-    font-size: 1.2rem;
-    color: #666;
-    padding: 50px 0;
-    width: 100%; /* グリッド内で中央表示 */
-}
-
-
-/* ========================================
-   8. GAMEページ固有スタイル (Game Page Styles)
-   ======================================== */
-
-.game-section {
-    padding-top: 0; /* 上のセクションからの連続性を保つ */
-    padding-bottom: 80px; /* 下のセクションとの余白 */
-}
-
-/* 動画グリッドの共通スタイル */
-.video-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* レスポンシブグリッド */
-    gap: 30px; /* アイテム間のスペース */
-    margin-top: 40px;
-}
-
-/* 各動画アイテムのスタイル */
-.video-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    overflow: hidden; /* 角丸に合わせて動画がはみ出さないように */
-    text-align: left; /* テキストは左寄せ */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.video-item:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-
-.video-item .video-thumbnail {
-    width: 100%;
-    height: 180px; /* サムネイルの固定高さ */
-    object-fit: cover; /* 画像がはみ出さず、コンテナを埋めるように */
-    display: block; /* 余分な下余白をなくす */
-}
-
-.video-item .video-info {
-    padding: 15px;
-}
-
-.video-item h4 {
-    font-size: 1.1rem;
-    color: var(--accent-color);
-    margin-bottom: 5px;
-    min-height: 2.2em; /* タイトルが2行になっても高さを揃える */
-    line-height: 1.4;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2; /* 2行で省略 */
-    -webkit-box-orient: vertical;
-    font-weight: 700;
-}
-
-.video-item p.video-date {
-    font-size: 0.85rem;
-    color: #666;
-    margin-bottom: 10px;
-}
-
-.video-item .button-watch {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: var(--accent-color);
-    padding: 8px 15px;
-    border-radius: 50px;
-    font-size: 0.85rem;
-    font-weight: 700;
-    transition: background-color 0.3s ease, transform 0.3s ease, color 0.3s ease;
-    margin-top: 5px; /* サムネイルとボタンの間の余白 */
-}
-
-.video-item .button-watch:hover {
-    background-color: var(--accent-color);
-    color: #fff;
-    transform: translateY(-2px);
-}
-
-
-/* ========================================
-   9. フッター (Footer)
-   ======================================== */
-footer {
-    background-color: var(--background-dark);
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-    margin-top: 60px;
-}
-
-/* ========================================
-   10. アニメーションキーフレーム (Animation Keyframes)
-   ======================================== */
-@keyframes fadeInScale {
-    from {
-        opacity: 0;
-        transform: scale(0.9);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes slideInFromTop {
-    from {
-        opacity: 0;
-        transform: translateY(-50px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-    to {
-        opacity: 1;
-    }
-}
-
-@keyframes fadeInButton {
-    from {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-@keyframes moveBackground {
-    from {
-        background-position: 0 0, 0 0, 0 0; /* 各背景レイヤーの初期位置 */
-    }
-    to {
-        background-position: 500px 500px, 800px 800px, 1200px 1200px; /* 各背景レイヤーの終点位置 */
-    }
-}
-
-/* ========================================
-   11. レスポンシブデザイン (Responsive Design)
-   ======================================== */
-@media (max-width: 768px) {
-    /* グローバル */
-    .container {
-        padding: 0 15px; /* モバイルでの左右余白を狭く */
-    }
-
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 40px;
-    }
-
-    /* ヘッダー */
-    nav {
-        flex-wrap: wrap; /* ナビゲーションアイテムを折り返す */
-        padding: 0 15px;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-    }
-
-    .nav-menu {
-        flex-direction: column; /* 縦並び */
-        width: 100%;
-        text-align: center;
-        background-color: var(--background-dark);
-        position: absolute;
-        top: 60px; /* ヘッダーの高さに合わせて調整 */
-        left: 0;
-        transform: translateY(-100%); /* 画面外に隠す */
-        transition: transform 0.3s ease-in-out; /* 開閉アニメーション */
-        padding: 20px 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .nav-menu.active {
-        transform: translateY(0); /* 表示 */
-    }
-
-    .nav-menu li {
-        margin: 15px 0; /* 縦並び時の間隔 */
-    }
-
-    .menu-toggle {
-        display: flex; /* 小画面で表示 */
-    }
-
-    /* HOMEセクション */
-    .hero-section {
-        padding-top: 100px; /* ヘッダーとの兼ね合い */
-        min-height: auto; /* コンテンツに合わせて高さを調整 */
-    }
-
-    .main-visual-standing {
-        max-height: 50vh; /* モバイルでの高さを調整 */
-    }
-
-    .visual-slideshow {
-        width: 90%; /* モバイルでの幅を調整 */
-    }
-
-    .concept-display {
-        font-size: 1.8rem; /* モバイルでのフォントサイズ調整 */
-    }
-
-    .tagline {
-        font-size: 1.2rem; /* モバイルでのフォントサイズ調整 */
-    }
-
-    .button-latest-info {
-        font-size: 1rem;
-        padding: 12px 25px;
-    }
-
-    /* HOMEコンテンツ */
-    .home-announcements-section {
-        padding-bottom: 0;
-    }
-
-    .announcements-box {
-        padding: 20px;
-        margin-bottom: 40px;
-    }
-
-    /* HOMEのお知らせセクション */
-    .announcements-list li {
-        font-size: 0.9rem;
-        flex-direction: column; /* 縦並び */
-        align-items: flex-start; /* 左寄せ */
-    }
-
-    .announcements-list .date {
-        margin-bottom: 5px; /* 日付とテキストの間のスペース */
-    }
-
-    /* 活動内容セクション */
-    .activities-section {
-        padding-bottom: 40px;
-    }
-    .activities-grid {
-        grid-template-columns: 1fr; /* 1列表示 */
-        gap: 30px;
-    }
-    .activity-item {
-        padding: 25px;
-    }
-    .activity-item .activity-title {
-        font-size: 1.5rem;
-    }
-    .activity-item .activity-description {
-        font-size: 0.95rem;
-    }
-    .activity-item .button-view-media {
-        font-size: 0.9rem;
-        padding: 8px 20px;
-    }
-
-    /* SNSをチェックセクション */
-    .sns-check-section {
-        padding-bottom: 40px;
-    }
-    .sns-check-section .social-links {
-        padding: 20px;
-        gap: 20px;
-    }
-    .sns-check-section .social-links a {
-        font-size: 3rem;
-    }
-
-
-    /* ABOUTページ固有 */
-    .page-hero {
-        min-height: 30vh;
-        padding-top: 60px;
-    }
-    .page-hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .page-hero-content p {
-        font-size: 1.2rem;
-    }
-
-    .content-section {
-        padding: 50px 15px;
-    }
-
-    .profile-main-visual img {
-        max-width: 250px;
-    }
-
-    .profile-details {
-        grid-template-columns: 1fr; /* 1列表示 */
-        gap: 30px;
-        margin-bottom: 40px;
-    }
-
-    .detail-item {
-        padding: 25px;
-    }
-
-    .detail-item i {
-        font-size: 2rem;
-    }
-
-    .detail-item h3 {
-        font-size: 1.3rem;
-    }
-
-    .detail-item p {
-        font-size: 1rem;
-    }
-
-    .message-to-fans, .activity-intro {
-        padding: 30px;
-    }
-    .message-to-fans h3, .activity-intro h3 {
-        font-size: 1.5rem;
-    }
-    .message-to-fans p, .activity-intro p {
-        font-size: 1rem;
-    }
-
-    /* MUSICページ固有スタイル */
-    .latest-release-card {
-        flex-direction: column; /* モバイルでは縦並び */
-        padding: 30px;
-        margin-bottom: 60px; /* 調整 */
-        gap: 30px;
-    }
-
-    .latest-release-card .album-art {
-        width: 200px;
-        height: 200px;
-    }
-
-    .latest-release-card .release-info {
-        text-align: center;
-    }
-
-    .latest-release-card .release-info h3 {
-        font-size: 1.6rem;
-    }
-
-    .latest-release-card .release-date {
-        font-size: 1rem;
-    }
-
-    .latest-release-card .release-description {
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-    }
-
-    .latest-release-card .listen-links {
-        justify-content: center; /* ボタンを中央寄せ */
-        flex-direction: column; /* ボタンを縦に並べる */
-        gap: 10px;
-    }
-
-    .latest-release-card .listen-button {
-        width: 80%; /* 幅を調整 */
-        margin: 0 auto; /* 中央寄せ */
-    }
-
-    .filter-controls {
-        flex-direction: column; /* モバイルで縦並び */
-        align-items: stretch; /* 幅いっぱいに広げる */
-        gap: 15px;
-        margin-bottom: 30px;
-    }
-
-    .sort-select, .search-input {
-        width: 100%; /* モバイルで幅いっぱいに */
-        max-width: none; /* max-widthの制限をなくす */
-    }
-
-    .song-grid, .playlist-grid {
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); /* モバイルでのグリッド */
-        gap: 20px;
-        margin-top: 30px;
-    }
-
-    .song-item, .playlist-item {
-        padding: 15px;
-    }
-
-    .song-item h4, .playlist-item h4 {
-        font-size: 1rem;
-        min-height: 2.2em;
-    }
-
-    .song-item p, .playlist-item p {
-        font-size: 0.8rem;
-        margin-bottom: 10px;
-    }
-
-    .button-small {
-        font-size: 0.8rem;
-        padding: 6px 15px;
-    }
-
-    /* GAMEページ固有スタイル */
-    .game-section {
-        padding-bottom: 60px;
-    }
-
-    .video-grid {
-        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* モバイルでのグリッド */
-        gap: 20px;
-        margin-top: 30px;
-    }
-
-    .video-item .video-thumbnail {
-        height: 120px; /* モバイルでのサムネイル高さ */
-    }
-
-    .video-item h4 {
-        font-size: 1rem;
-        min-height: 2em;
-    }
-
-    .video-item p.video-date {
-        font-size: 0.8rem;
-    }
-
-    .video-item .button-watch {
-        font-size: 0.8rem;
-        padding: 6px 12px;
-    }
-
-    /* フッター */
-    footer {
-        margin-top: 40px; /* モバイルでのフッター余白 */
-    }
-
-    /* ========================================
-       12. GOODSページ固有スタイル (Goods Page Styles)
-       ======================================== */
-
-    /* オンラインストアへの導線セクション */
-    .store-cta-section {
-        padding-top: 30px;
-        padding-bottom: 30px;
-    }
-
-    .button-primary-large {
-        font-size: 1.2rem;
-        padding: 15px 30px;
-        min-width: 250px;
-        gap: 10px;
-    }
-
-    .button-primary-large i {
-        font-size: 1.4rem;
-    }
-
-    .goods-section {
-        padding-bottom: 60px;
-    }
-
-    .latest-goods-card {
-        flex-direction: column; /* モバイルでは縦並び */
-        padding: 30px;
-        gap: 30px;
-    }
-
-    .latest-goods-card .latest-goods-art {
-        width: 250px;
-        height: 250px;
-    }
-
-    .latest-goods-card .goods-info {
-        text-align: center;
-    }
-
-    .latest-goods-card .goods-info h3 {
-        font-size: 1.6rem;
-    }
-
-    .latest-goods-card .goods-price {
-        font-size: 1.1rem;
-    }
-
-    .latest-goods-card .goods-release-date,
-    .latest-goods-card .goods-description,
-    .latest-goods-card .goods-status {
-        font-size: 0.95rem;
-    }
-
-    .latest-goods-card .button-store {
-        font-size: 0.9rem;
-        padding: 10px 20px;
-    }
-
-    .no-goods-message {
-        font-size: 1rem;
-        padding: 30px 0;
-    }
-
-    .future-goods-section {
-        padding-bottom: 60px;
-    }
 
 /* ========================================
    13. CONTACTページ固有スタイル (Contact Page Styles)
@@ -1354,7 +509,7 @@ footer {
 
 /* フォーム全体 */
 .contact-form {
-    background-color: #fff;
+    background-color: #fff; /* 背景を白に */
     padding: 40px;
     border-radius: 5px; /* 角丸を少なくする */
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 影を薄くする */
@@ -1376,10 +531,8 @@ footer {
 }
 
 .form-group .form-icon {
-    /* アイコンは画像にないので非表示にするか削除 */
-    /* display: none; */
-    margin-right: 8px;
-    color: var(--primary-color);
+    /* image_7d4d66.png にアイコンがないため非表示 */
+    display: none;
 }
 
 .form-group .required {
@@ -1423,11 +576,35 @@ footer {
     min-height: 120px; /* 最小の高さ */
 }
 
+/* プライバシーポリシーのチェックボックス */
+.privacy-policy-group {
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 15px; /* ボタンとの距離 */
+}
+
+.privacy-policy-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    vertical-align: middle; /* テキストと高さを揃える */
+}
+
+.privacy-policy-group label {
+    margin-bottom: 0; /* チェックボックスのラベルはマージンなし */
+    cursor: pointer;
+    font-size: 0.95rem;
+}
+
+
 .submit-button {
     display: block; /* 中央寄せのためブロック要素に */
     width: auto; /* コンテンツに合わせて幅を調整 */
     margin: 30px auto 15px; /* 上部と下部の余白、中央寄せ */
-    background-color: #6C8E2C; /* 濃い緑のボタン色を維持 */
+    background-color: #8DCB4A; /* image_7d4d66.png のボタン色に合わせる（明るい黄緑） */
     color: #fff;
     padding: 15px 35px;
     border: none;
@@ -1444,7 +621,7 @@ footer {
 }
 
 .submit-button:hover {
-    background-color: #5B7A25; /* ホバーで少し暗く */
+    background-color: #79B03D; /* ホバーで少し暗く */
     transform: translateY(-3px);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
 }
@@ -1457,7 +634,7 @@ footer {
 }
 
 
-/* Q&Aリスト (変更なし) */
+/* Q&Aリスト */
 .qa-list {
     margin-top: 40px;
 }
@@ -1538,8 +715,189 @@ footer {
 }
 
 
-/* レスポンシブデザインの調整 */
+/* ========================================
+   14. アニメーション (Animations)
+   ======================================== */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes fadeInButton {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes moveBackground {
+    0% { background-position: 0 0, 0 0, 0 0; }
+    100% { background-position: 500px 500px, 800px 800px, 1200px 1200px; }
+}
+
+/* ========================================
+   15. レスポンシブデザイン (Responsive Design)
+   ======================================== */
 @media (max-width: 768px) {
+    /* グローバル */
+    .container {
+        padding: 0 15px;
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 40px;
+    }
+
+    /* ヘッダー */
+    .nav-menu {
+        display: none; /* デフォルトで非表示 */
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px; /* ヘッダーの高さ */
+        left: 0;
+        background-color: var(--background-dark);
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        padding: 20px 0;
+        transition: max-height 0.3s ease-out;
+        max-height: 0; /* 初期状態で折りたたむ */
+        overflow: hidden; /* 内容がはみ出さないように */
+    }
+
+    .nav-menu.active {
+        max-height: 300px; /* メニューが開いた時の高さ */
+    }
+
+    .nav-menu li {
+        margin: 0;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav-menu a {
+        font-size: 1rem;
+        display: block; /* タッチエリアを広げる */
+        padding: 5px 0;
+    }
+
+    .menu-toggle {
+        display: flex; /* モバイルで表示 */
+    }
+
+    /* HOMEセクション */
+    .hero-section {
+        min-height: 80vh;
+        padding-top: 60px;
+    }
+
+    .concept-display {
+        font-size: 2.5rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+        margin-bottom: 25px;
+    }
+
+    .button-latest-info {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    /* お知らせセクション */
+    .home-announcements-section {
+        padding-top: 60px;
+    }
+
+    .announcements-box {
+        padding: 20px 25px;
+        margin-bottom: 40px;
+    }
+
+    .announcements-list li {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 8px 0;
+    }
+
+    .announcements-list .date {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+
+    /* 活動内容セクション */
+    .activities-section {
+        padding-bottom: 40px;
+    }
+
+    .activities-grid {
+        grid-template-columns: 1fr; /* モバイルでは1列に */
+        gap: 30px;
+    }
+
+    .activity-item {
+        padding: 25px;
+    }
+
+    .activity-item .activity-title {
+        font-size: 1.8rem;
+    }
+
+    .activity-item .activity-description {
+        font-size: 0.95rem;
+    }
+
+    .activity-item .button-view-media {
+        padding: 8px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* SNSセクション */
+    .sns-check-section {
+        padding-top: 40px;
+        padding-bottom: 60px;
+    }
+    .sns-check-section .social-links {
+        gap: 30px;
+    }
+
+    .sns-check-section .social-links a {
+        font-size: 3rem;
+    }
+
+    /* FOOTER */
+    footer {
+        padding: 1rem 0;
+    }
+    footer p {
+        font-size: 0.8rem;
+    }
+
+    /* ABOUT, MUSIC, GAME, GOODSページヒーロー */
+    .page-hero {
+        min-height: 30vh;
+    }
+    .page-hero-content h1 {
+        font-size: 2.8rem;
+    }
+    .page-hero-content p {
+        font-size: 1.2rem;
+    }
+
+    /* コンテンツセクション共通 */
+    .content-section {
+        padding: 60px 0;
+    }
+
+    /* CONTACTセクション */
     .contact-section, .qa-section {
         padding-bottom: 60px;
     }
@@ -1569,6 +927,17 @@ footer {
     .form-group textarea {
         min-height: 100px;
     }
+    .privacy-policy-group {
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .privacy-policy-group input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+    }
+    .privacy-policy-group label {
+        font-size: 0.9rem;
+    }
     .submit-button {
         font-size: 1.1rem;
         padding: 12px 25px;
@@ -1577,7 +946,7 @@ footer {
         font-size: 0.8rem;
     }
 
-    /* Q&Aリスト (変更なし) */
+    /* Q&Aリスト */
     .qa-item .question {
         padding: 15px 20px;
     }
